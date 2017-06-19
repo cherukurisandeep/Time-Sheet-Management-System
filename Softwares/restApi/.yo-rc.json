@@ -1,0 +1,16 @@
+{
+  "generator-ng-fullstack": {
+    "appName": "server",
+    "username": "sandeep",
+    "userEmail": "sunny.itsme34@gmail.com",
+    "stack": "server",
+    "repoHostUrl": "github.com",
+    "userNameSpace": "sandeep",
+    "client": "",
+    "server": "node",
+    "nodeWebFrameworkServer": "express",
+    "transpilerServer": "babel",
+    "secure": true,
+    "testsSeparated": true
+  }
+}
