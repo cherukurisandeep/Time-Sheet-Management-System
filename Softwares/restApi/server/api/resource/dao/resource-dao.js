@@ -73,8 +73,9 @@ export default class resourceDAO {
   static  getById(_id) {
     return new Promise((resolve, reject) => {
       console.log('getById Dao');
+      _id = '%'+_id+'%'
       resourceSchema.resource
-        .find({where: {$or: [{fistname: _id}, {lastname: _id}, {role: _id},{dob:{$like: _id}}]}})
+        .findAll({where: {$or: [{fistname: _id}, {lastname: _id}, {role: _id},{dob:{$like: _id}}]}})
         .then((users) => {
           if (!users) {
             return reject(404)
