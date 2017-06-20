@@ -10,7 +10,7 @@ export default class User{
     return new Promise((resolve,reject)=>{
       console.log('getall method called')
       //console.log(userSchema)
-      userSchema.Userlogin.findAndCountAll({})
+      userSchema.userlogin.findAndCountAll({})
         .then(users=>{
           //console.log('all users are'+JSON.stringify(users))
           resolve(users)
@@ -27,12 +27,13 @@ export default class User{
       console.log('enterd into createnew mrthod in dao')
       let _reqBody = request
       console.log(_reqBody.username)
-      userSchema.Userlogin.create({
+      userSchema.userlogin.create({
         username:_reqBody.username,
         lastname:_reqBody.lastname,
         password: _reqBody.password,
         email: _reqBody.email,
-        dob : _reqBody.dob
+        dob : _reqBody.dob,
+        role : _reqBody.role
       }).then(users=>{
         resolve(users)
       })
@@ -46,7 +47,7 @@ export default class User{
   static removeById(_id){
     return new Promise((resolve, reject) => {
       console.log('in dao')
-      userSchema.Userlogin
+      userSchema.userlogin
         .findById(_id)
         .then(user => {
           if (!user) {
@@ -66,13 +67,14 @@ export default class User{
 
    */
   static  getById(_id){
+    console.log("DAO")
     return new Promise((resolve,reject)=>{
       console.log('getById Dao');
     /* if(typeof(_id) === Number){
         console.log('Number<---------->')
       }*/
-      userSchema.Userlogin
-        .find({where:{$or:[{username : _id} , {type : _id}]}})
+      userSchema.userlogin
+        .find({where:{$or:[{username : _id} , {role : _id}]}})
         .then((users)=>{
         if(!users){
           return reject(404)
@@ -88,7 +90,7 @@ export default class User{
   }
   static update(_reqBody,_id){
     return new Promise((resolve,reject)=>{
-      userSchema.Userlogin
+      userSchema.userlogin
         .update({
           username : _reqBody.username,
           password : _reqBody.password

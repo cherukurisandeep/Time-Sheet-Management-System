@@ -43,12 +43,13 @@ export default class userController {
       });
   }
   static getById(req,res){
+    console.log('in Controller--<');
     let _id = req.params.id;
     console.log('in Controller');
     userDAO
       .getById(_id).then((users)=>{
       if(users){
-        res.status(200).json(users).send(users);
+        res.json(users).send(users);
       }
       else{
         res.sent('Data not Found');

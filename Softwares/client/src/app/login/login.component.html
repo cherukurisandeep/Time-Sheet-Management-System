@@ -1,0 +1,25 @@
+<p>
+  login works!
+</p>
+<div class = "container">
+  <div class="wrapper">
+    <form [formGroup]="complexForm" (ngSubmit)="getAdmin(complexForm.value)" class="form-signin">
+      <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+      <hr class="colorgraph"><br>
+      <div class="form-group" [ngClass] = "{'has-error':!complexForm.controls['username'].valid && complexForm.controls['username'].touched}">
+      <input type="text" class="form-control" name="username"   placeholder="Username"  [formControl]="complexForm.controls['username'] "/>
+        <div *ngIf="complexForm.controls['username'].hasError('required') && complexForm.controls['username'].touched" class="alert alert-danger">
+          You must include a username
+        </div>
+      </div>
+      <div class="form-group" [ngClass] = "{'has-error':!complexForm.controls['password'].valid && complexForm.controls['password'].touched}">
+        <input type="password" class="form-control"  name="password"   placeholder="password" [formControl]="complexForm.controls['password'] "/>
+        <div *ngIf="complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched" class="alert alert-danger">
+          You must include a password
+        </div>
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login"  [disabled]="!complexForm.valid" type="Submit">Login</button>
+    </form>
+  </div>
+</div>

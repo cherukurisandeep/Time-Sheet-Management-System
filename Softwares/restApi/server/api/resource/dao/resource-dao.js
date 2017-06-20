@@ -25,7 +25,7 @@ export default class resourceDAO {
     return new Promise((resolve, reject) => {
       console.log('enterd into createnew mrthod in dao')
       let _reqBody = request
-      console.log(_reqBody.username)
+      console.log(_reqBody.fistname)
       resourceSchema.resource.create({
         fistname: _reqBody.fistname,
         lastname: _reqBody.lastname,
