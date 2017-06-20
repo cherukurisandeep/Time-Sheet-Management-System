@@ -71,23 +71,50 @@ export default class resourceDAO {
 
    */
   static  getById(_id) {
-    return new Promise((resolve, reject) => {
-      console.log('getById Dao');
-      _id = '%'+_id+'%'
-      resourceSchema.resource
-        .findAll({where: {$or: [{fistname: _id}, {lastname: _id}, {role: _id},{dob:{$like: _id}}]}})
-        .then((users) => {
-          if (!users) {
-            return reject(404)
-          }
-          else {
-            return resolve(users)
-          }
-        }, (error) => {
-          reject(error)
-        })
+    var d = _id
+    let date = new Date(_id);
+    if (date instanceof Date && !isNaN(date.valueOf())) {
+      return new Promise((resolve, reject) => {
+        console.log('getById Dao');
 
-    })
+
+        // _id = '%'+_id+'%'
+        resourceSchema.resource
+          .findAll({where: {$or: [{fistname: _id}, {lastname: _id}, {role: _id}, {dob: new Date(_id)}]}})
+          .then((users) => {
+            if (!users) {
+              return reject(404)
+            }
+            else {
+              return resolve(users)
+            }
+          }, (error) => {
+            reject(error)
+          })
+
+      })
+    }
+    else {
+      return new Promise((resolve, reject) => {
+        console.log('getById Dao');
+
+
+        // _id = '%'+_id+'%'
+        resourceSchema.resource
+          .findAll({where: {$or: [{fistname: _id}, {lastname: _id}, {role: _id}]}})
+          .then((users) => {
+            if (!users) {
+              return reject(404)
+            }
+            else {
+              return resolve(users)
+            }
+          }, (error) => {
+            reject(error)
+          })
+
+      })
+    }
   }
 
   static update(_reqBody, _id) {

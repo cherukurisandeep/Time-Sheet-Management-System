@@ -29,8 +29,10 @@ export default class User{
       console.log(_reqBody.username)
       userSchema.Userlogin.create({
         username:_reqBody.username,
+        lastname:_reqBody.lastname,
         password: _reqBody.password,
-        type: _reqBody.type
+        email: _reqBody.email,
+        dob : _reqBody.dob
       }).then(users=>{
         resolve(users)
       })
@@ -70,7 +72,7 @@ export default class User{
         console.log('Number<---------->')
       }*/
       userSchema.Userlogin
-        .find({where:{$or:[{username : _id} , {type : _id},{createdAt : _id}]}})
+        .find({where:{$or:[{username : _id} , {type : _id}]}})
         .then((users)=>{
         if(!users){
           return reject(404)

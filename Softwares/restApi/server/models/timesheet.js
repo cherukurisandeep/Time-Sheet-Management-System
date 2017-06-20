@@ -1,21 +1,22 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var resource_contact = sequelize.define('resource_contact', {
-    r_contact_type: DataTypes.STRING,
-    r_contact: DataTypes.STRING
+  var timeSheet = sequelize.define('timeSheet', {
+    t_startdate: DataTypes.DATE,
+    t_enddate: DataTypes.DATE
   }, {
     classMethods: {
       associate: function(models) {
-        resource_contact.hasMany(models.resources,{
-          as: 'resource',
+        timeSheet.hasMany(models.timeSheetEntries,models.projects,{
           foreignKey :{
-            resource_id : "id"
+            timeSheetEntry_id : "id",
+            project_id : "id"
           },
           onDelete:"CASCADE"
         })
+
         // associations can be defined here
       }
     }
   });
-  return resource_contact;
+  return timeSheet;
 };

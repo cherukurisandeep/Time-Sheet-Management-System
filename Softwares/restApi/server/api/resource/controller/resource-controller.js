@@ -52,7 +52,7 @@ export default class resourceController {
       .catch((error=>res.json(error)))
   }
   static update(req,res){
-    const _id = req.params.id;
+
     const _reqBody = req.body;
 
     resourceDAO
