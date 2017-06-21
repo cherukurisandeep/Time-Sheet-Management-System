@@ -3,10 +3,26 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ResourceComponent } from './resource/resource.component';
 import { ProjectComponent } from './project/project.component';
+import { CreateResourceComponent } from './resource/create-resource/create-resource.component';
+import { EditResourceComponent } from './resource/edit-resource/edit-resource.component';
+import { CreateProjectComponent } from './project/create-project/create-project.component';
+import { EditProjectComponent } from './project/edit-project/edit-project.component';
 export const rootRouterConfig: Routes =[
   {path:'',  redirectTo:'login',pathMatch:'full'},
   {path:'login', component:LoginComponent},
   {path:'home', component:HomeComponent},
-  {path:'resource', component:ResourceComponent},
-  {path:'project',component: ProjectComponent}
+  {path : 'resource/create', component : CreateResourceComponent},
+  {path : 'project/create', component : CreateProjectComponent},
+
+  {path:'resource', component:ResourceComponent,
+    children : [
+      {path : 'create', component : CreateResourceComponent},
+      {path : ':id/edit', component : EditResourceComponent}
+      ]
+  },
+  {path:'project',component: ProjectComponent,
+    children:[
+      {path : 'create', component : CreateProjectComponent},
+      {path : ':id/edit', component : EditProjectComponent}
+    ]}
 ]

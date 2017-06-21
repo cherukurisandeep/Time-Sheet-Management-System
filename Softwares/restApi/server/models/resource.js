@@ -4,6 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     fistname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     password: DataTypes.STRING,
+    email : DataTypes.STRING,
     dob: DataTypes.DATE,
     joindate: DataTypes.DATE,
     enddate: DataTypes.DATE,

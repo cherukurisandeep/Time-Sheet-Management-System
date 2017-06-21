@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
-import {resourceService} from '../resource/resource-service'
+import {resourceService} from '../resource/resource-service';
+import {Router,ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-resource',
@@ -11,9 +12,10 @@ import {resourceService} from '../resource/resource-service'
 })
 export class ResourceComponent implements OnInit {
   @ViewChild('childModal') public childModal:ModalDirective;
+  public resource=[]
   public complexForm : FormGroup;
 
-  constructor(private fb: FormBuilder,private resService : resourceService) {
+  constructor(private fb: FormBuilder,private resService : resourceService,private Router: Router,private route : ActivatedRoute) {
     this.complexForm = fb.group({
       'fistname' : [null, Validators.required],
       'lastname': [null,  Validators.required],
@@ -28,6 +30,14 @@ export class ResourceComponent implements OnInit {
         console.log('form changed to:', form);
       }
     );
+    this.resService.getAllResources().subscribe(emp=>{
+      console.log(typeof emp);
+      console.log(emp)
+      this.resource=(emp);
+      console.log(this.resource)
+
+    })
+
   }
 
   ngOnInit() {
@@ -39,6 +49,9 @@ export class ResourceComponent implements OnInit {
    })
 
     console.log(value);
+
+  }
+  editResource(id){
 
   }
 

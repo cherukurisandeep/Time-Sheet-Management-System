@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';1
+import { RouterModule } from '@angular/router';
 import {ReactiveFormsModule } from '@angular/forms';
 import { rootRouterConfig } from './app.router';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,12 @@ import {SelectModule} from 'ng2-select';
 import { HttpModule } from '@angular/http';
 import { ModalModule } from 'ngx-bootstrap';
 import {QueryApi} from './commonservice/request/QueryApi' ;
-import {RequestUtils} from './commonservice/request/requestUtils'
+import {RequestUtils} from './commonservice/request/requestUtils';
+import { ActionheaderComponent } from './actionheader/actionheader.component';
+import { CreateResourceComponent } from './resource/create-resource/create-resource.component';
+import { EditResourceComponent } from './resource/edit-resource/edit-resource.component';
+import { CreateProjectComponent } from './project/create-project/create-project.component';
+import { EditProjectComponent } from './project/edit-project/edit-project.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +28,12 @@ import {RequestUtils} from './commonservice/request/requestUtils'
     LoginComponent,
     HomeComponent,
     ResourceComponent,
-    ProjectComponent
+    ProjectComponent,
+    ActionheaderComponent,
+    CreateResourceComponent,
+    EditResourceComponent,
+    CreateProjectComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,

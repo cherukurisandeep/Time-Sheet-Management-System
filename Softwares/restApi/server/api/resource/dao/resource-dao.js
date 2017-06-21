@@ -9,7 +9,7 @@ export default class resourceDAO {
     return new Promise((resolve, reject) => {
       console.log('getall method called')
       //console.log(userSchema)
-      resourceSchema.resource.findAndCountAll({})
+      resourceSchema.resource.findAll({})
         .then(users => {
           //console.log('all users are'+JSON.stringify(users))
           resolve(users)
@@ -30,6 +30,7 @@ export default class resourceDAO {
         fistname: _reqBody.fistname,
         lastname: _reqBody.lastname,
         password: _reqBody.password,
+        email : _reqBody.email,
         dob: _reqBody.dob,
         joindate: _reqBody.joindate,
         enddate: _reqBody.enddate,

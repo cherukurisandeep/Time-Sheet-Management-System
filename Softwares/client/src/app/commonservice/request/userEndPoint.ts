@@ -1,6 +1,7 @@
 import { environment } from './../../../environments/environment';
 export const USERS ='USERS'
 export const Resource ='Resource'
+export const Project ='Project'
 export const UserEndPoint = (type:string,params:any)=>{
   switch(type){
     case USERS:
@@ -8,6 +9,8 @@ export const UserEndPoint = (type:string,params:any)=>{
       return environment.API_ROOT + '/tsms/user/' +params ;
     case Resource:
       return environment.API_ROOT + '/tsms/resource';
+    case Project:
+      return environment.API_ROOT + '/tsms/project'
 
   }
 

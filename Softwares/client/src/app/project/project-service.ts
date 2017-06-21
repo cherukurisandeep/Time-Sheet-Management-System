@@ -10,15 +10,15 @@ import 'rxjs/add/operator/map';
 import {QueryApi} from '../commonservice/request/QueryApi';
 import {RequestUtils} from '../commonservice/request/requestUtils'
 @Injectable()
-export class resourceService{
+export class projectService{
   constructor(private http: Http,private queryApi : QueryApi){
 
   }
-  createResource(params): Observable <any>  {
+  createProject(params): Observable <any>  {
     //const requestOptions = RequestUtils.getRequestOptions(params);
     //alert(params.username);
     alert(params);
-    return this.queryApi.doPost('Resource', params)
+    return this.queryApi.doPost('Project', params)
       .map((res: Response) => {
         console.log(res.json());
         return res.json();
@@ -28,12 +28,12 @@ export class resourceService{
       });
 
   }
-  getAllResources(): Observable<any>{
+  getAllProjects(): Observable<any>{
     let req
-    return this.queryApi.doGet('Resource',req)
+    return this.queryApi.doGet('Project',req)
       .map((res:Response)=>{
-      console.log(res.json());
-      return res.json();
+        console.log(res.json());
+        return res.json();
       })
       .catch((error :any)=>{
         return Observable.throw(error.json().error || "server error")

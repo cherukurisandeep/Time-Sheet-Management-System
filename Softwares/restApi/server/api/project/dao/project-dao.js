@@ -8,7 +8,7 @@ export default class projectDAO {
     return new Promise((resolve, reject) => {
       console.log('getall method called')
       //console.log(userSchema)
-      resourceSchema.project.findAndCountAll({})
+      resourceSchema.project.findAll({})
         .then(projects => {
           //console.log('all users are'+JSON.stringify(users))
           resolve(projects)
@@ -24,11 +24,11 @@ export default class projectDAO {
     return new Promise((resolve, reject) => {
       console.log('enterd into createnew mrthod in dao')
       let _reqBody = request
-      console.log(_reqBody.username)
+
       resourceSchema.project.create({
         name: _reqBody.name,
         description: _reqBody.description,
-        startdate: _reqBody.password,
+        startdate: _reqBody.startdate,
         enddate: _reqBody.enddate
       }).then(projects => {
         resolve(projects)

@@ -7,7 +7,7 @@ export class QueryApi{
 
   }
   doGet(url: any, params: any) {
-    alert(params +'==>' + url)
+    //alert(params +'==>' + url)
     url = UserEndPoint(url, params);
     return this.http.get(url, params );
   }
