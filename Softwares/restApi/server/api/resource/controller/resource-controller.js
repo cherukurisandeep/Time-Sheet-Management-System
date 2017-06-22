@@ -54,9 +54,10 @@ export default class resourceController {
   static update(req,res){
 
     const _reqBody = req.body;
+    const _id = _reqBody.id;
 
     resourceDAO
-      .update(_reqBody,_id)
+      .update(_id,_reqBody)
       .then(user => {
         res.status(201).json(user).send(user);
       })

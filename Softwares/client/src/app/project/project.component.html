@@ -5,7 +5,7 @@
 
 <div class="wrapper">
   <div class="col-md-2 col-lg-2"></div>
-  <div class="col-md-8 col-lg-8 col-sm-12">
+  <div class="col-md-12 col-lg-12 col-sm-12">
     <table class = "table table-hover">
 
       <thead>
@@ -31,9 +31,28 @@
             <span class="glyphicon glyphicon-eye-open"></span>
           </button>
 
-          <button type="button" class="btn btn-danger btn-sm">
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteModel.show()">
             <span class="glyphicon glyphicon-remove"></span>
           </button></td>
+        <div bsModal #deleteModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title pull-left">Delete Conformation</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModel.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure that you want to delete <strong>{{i.name}}</strong>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deleteProject(i.id)">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="deleteModel.hide()">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </tr>
       </tbody>
 

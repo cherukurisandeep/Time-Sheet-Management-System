@@ -12,6 +12,7 @@ import {Router,ActivatedRoute} from '@angular/router';
 })
 export class ResourceComponent implements OnInit {
   @ViewChild('childModal') public childModal:ModalDirective;
+  @ViewChild('deleteModel') public deleteModel:ModalDirective;
   public resource=[]
   public complexForm : FormGroup;
 
@@ -30,6 +31,12 @@ export class ResourceComponent implements OnInit {
         console.log('form changed to:', form);
       }
     );
+    this.getResource()
+  }
+
+  ngOnInit() {
+  }
+  getResource(){
     this.resService.getAllResources().subscribe(emp=>{
       console.log(typeof emp);
       console.log(emp)
@@ -37,10 +44,6 @@ export class ResourceComponent implements OnInit {
       console.log(this.resource)
 
     })
-
-  }
-
-  ngOnInit() {
   }
   addResource(value){
    this.resService.createResource(value).subscribe(users=>{
@@ -52,7 +55,19 @@ export class ResourceComponent implements OnInit {
 
   }
   editResource(id){
+    alert(id)
+    this.Router.navigate(['resource/'+id+'/edit'])
 
+  }
+  deleteResource(id){
+    this.resService.deleteResource(id).subscribe(del=>{
+      if(del.status===200){
+        this.getResource();
+        this.deleteModel.hide();
+      }
+    })
+
+    this.getResource()
   }
 
 }

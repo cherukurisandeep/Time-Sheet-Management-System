@@ -9,6 +9,7 @@ import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import {QueryApi} from '../commonservice/request/QueryApi';
 import {RequestUtils} from '../commonservice/request/requestUtils'
+
 @Injectable()
 export class resourceService{
   constructor(private http: Http,private queryApi : QueryApi){
@@ -38,8 +39,33 @@ export class resourceService{
       .catch((error :any)=>{
         return Observable.throw(error.json().error || "server error")
       })
-
-
+  }
+  deleteResource(params): Observable<any>{
+    return this.queryApi.doDelete('ActionResource',params)
+      .map((res:Response)=>{
+      return res;
+      })
+      .catch((error : any)=>{
+        return Observable.throw(error|| "server error")
+      })
+  }
+  getResource(params): Observable<any>{
+    return this.queryApi.doGet('ActionResource',params)
+      .map((res:Response)=>{
+      return res.json();
+      })
+      .catch((error: any)=>{
+      return Observable.throw( error|| 'server error')
+      })
+  }
+  updateResource(params): Observable<any>{
+    return this.queryApi.doPut('ActionResource',params)
+      .map((res:Response)=>{
+      return res
+    })
+      .catch((error : any)=>{
+      return Observable.throw(error || 'server error')
+      })
   }
 
 

@@ -41,6 +41,13 @@ export class projectService{
 
 
   }
-
-
+  deleteProject(params):Observable<any>{
+    return this.queryApi.doDelete('ActionProject',params)
+      .map((res: Response)=>{
+      return res;
+      })
+      .catch((error : any)=>{
+      return Observable.throw(error|| "server error")
+      })
+  }
 }

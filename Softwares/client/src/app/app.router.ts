@@ -13,11 +13,13 @@ export const rootRouterConfig: Routes =[
   {path:'home', component:HomeComponent},
   {path : 'resource/create', component : CreateResourceComponent},
   {path : 'project/create', component : CreateProjectComponent},
+  {path : 'resource/:id/edit',component : EditResourceComponent},
 
   {path:'resource', component:ResourceComponent,
     children : [
       {path : 'create', component : CreateResourceComponent},
       {path : ':id/edit', component : EditResourceComponent}
+      // {path : ':id/view', component : }
       ]
   },
   {path:'project',component: ProjectComponent,

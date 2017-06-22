@@ -20,7 +20,9 @@ import { ActionheaderComponent } from './actionheader/actionheader.component';
 import { CreateResourceComponent } from './resource/create-resource/create-resource.component';
 import { EditResourceComponent } from './resource/edit-resource/edit-resource.component';
 import { CreateProjectComponent } from './project/create-project/create-project.component';
-import { EditProjectComponent } from './project/edit-project/edit-project.component'
+import { EditProjectComponent } from './project/edit-project/edit-project.component';
+import { MomentModule } from 'angular2-moment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,8 @@ import { EditProjectComponent } from './project/edit-project/edit-project.compon
     ModalModule.forRoot(),
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     ReactiveFormsModule,
-    SelectModule
+    SelectModule,
+    MomentModule
   ],
   providers: [QueryApi,RequestUtils],
   bootstrap: [AppComponent]

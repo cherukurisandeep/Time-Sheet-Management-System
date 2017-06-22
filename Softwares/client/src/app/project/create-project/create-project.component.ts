@@ -33,7 +33,7 @@ export class CreateProjectComponent implements OnInit {
     this.proService.createProject(value).subscribe(users=>{
       console.log(users);
       alert("Successfully Created");
-      this.Router.navigate(['/resource'])
+      this.Router.navigate(['/project'])
     });
 
 

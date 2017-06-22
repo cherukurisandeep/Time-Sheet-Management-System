@@ -69,6 +69,7 @@ export default class resourceDAO {
 
   /*
    .find({where:{id : _id }} || { where : {username : _id}})
+   .find({where: {$or: [{fistname: _id}, {lastname: _id}, {role: _id}, {dob: new Date(_id)}]}})
 
    */
   static  getById(_id) {
@@ -81,7 +82,7 @@ export default class resourceDAO {
 
         // _id = '%'+_id+'%'
         resourceSchema.resource
-          .findAll({where: {$or: [{fistname: _id}, {lastname: _id}, {role: _id}, {dob: new Date(_id)}]}})
+          .find({where: { id : _id}})
           .then((users) => {
             if (!users) {
               return reject(404)
@@ -118,10 +119,13 @@ export default class resourceDAO {
     }
   }
 
-  static update(_reqBody, _id) {
+  static update(_id,_reqBody) {
     return new Promise((resolve, reject) => {
+     _id = _reqBody.id;
+     console.log(_id);
       resourceSchema.resource
         .update({
+            id     : _reqBody.id,
             fistname: _reqBody.fistname,
             lastname : _reqBody.lastname,
             password: _reqBody.password,
