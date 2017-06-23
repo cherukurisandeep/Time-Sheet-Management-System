@@ -17,7 +17,7 @@ export class EditResourceComponent implements OnInit {
   public complexForm : FormGroup;
 
 
-  constructor(public router: ActivatedRoute,private fb: FormBuilder,private resService : resourceService) {
+  constructor(public router: ActivatedRoute,private fb: FormBuilder,private resService : resourceService, public Router:Router) {
 
     this.paramsId = this.router.params.subscribe(params => {
       this.uservalue = +params['id'];
@@ -72,10 +72,8 @@ export class EditResourceComponent implements OnInit {
     console.log(value);
     this.resService.updateResource(value).subscribe(resupdate=>{
       alert(resupdate.status);
+      this.Router.navigate(['/resource']);
     })
-
-
-
   }
 
 }

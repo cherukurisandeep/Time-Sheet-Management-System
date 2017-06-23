@@ -37,13 +37,37 @@ export class CreateResourceComponent implements OnInit {
   addResource(value){
     this.resService.createResource(value).subscribe(users=>{
       console.log(users);
-      alert("Successfully Created");
-      this.Router.navigate(['/resource'])
+
+     alert("resoure created");
+     this.createUser(value);
+
     });
 
 
     console.log(value);
 
+  }
+  createUser(value){
+    let user = {
+      "username" : value.fistname,
+      "lastname" : value.lastname,
+      "password" : value.password,
+      "email"    : value.email,
+      "dob"      : value.dob,
+      "role"    : value.role
+    }
+    console.log(user);
+    this.resService.createUser(user).subscribe(rest =>{
+      console.log(rest);
+      alert("Successfully Created");
+      this.Router.navigate(['/resource'])
+    })
+  }
+  emailCheck(email){
+    console.log(email);
+    this.resService.getResource(email).subscribe(sub=>{
+      console.log(sub);
+    })
   }
 
 }

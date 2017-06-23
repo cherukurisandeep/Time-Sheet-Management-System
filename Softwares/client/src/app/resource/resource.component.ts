@@ -69,5 +69,9 @@ export class ResourceComponent implements OnInit {
 
     this.getResource()
   }
+  veiwResource(id){
+    this.Router.navigate(['resource/'+id+'/view']);
+
+  }
 
 }

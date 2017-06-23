@@ -67,10 +67,11 @@ export default class projectDAO {
 
    */
   static  getById(_id) {
+    console.log(typeof _id);
     return new Promise((resolve, reject) => {
       console.log('getById Dao');
       resourceSchema.project
-        .find({where: {$or: [{name: _id}]}})
+        .find({where: {$or: [{id: _id}]}})
         .then((projects) => {
           if (!projects) {
             return reject(404)

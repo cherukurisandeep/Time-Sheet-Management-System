@@ -38,8 +38,6 @@ export class projectService{
       .catch((error :any)=>{
         return Observable.throw(error.json().error || "server error")
       })
-
-
   }
   deleteProject(params):Observable<any>{
     return this.queryApi.doDelete('ActionProject',params)
@@ -48,6 +46,25 @@ export class projectService{
       })
       .catch((error : any)=>{
       return Observable.throw(error|| "server error")
+      })
+  }
+  getProject(params):Observable<any>{
+    return this.queryApi.doGet('ActionProject',params)
+      .map((res:Response)=>{
+      return res.json();
+      })
+      .catch(( error :any)=>{
+      return Observable.throw(error || "server error")
+
+      })
+  }
+  updateResource(params):Observable<any>{
+    return this.queryApi.doPut('ActionProject',params)
+      .map((res:Response)=>{
+        return res
+      })
+      .catch((error : any)=>{
+        return Observable.throw(error || 'server error')
       })
   }
 }

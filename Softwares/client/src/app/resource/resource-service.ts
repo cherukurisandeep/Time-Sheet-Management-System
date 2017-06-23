@@ -29,6 +29,17 @@ export class resourceService{
       });
 
   }
+  createUser(params):Observable<any>{
+    return this.queryApi.doPost('USEREDIT',params)
+      .map((res:Response)=>{
+      console.log(res.json());
+      return res.json();
+      })
+      .catch((error:any)=>{
+      return Observable.throw(error.error || 'Server Error')
+      })
+
+  }
   getAllResources(): Observable<any>{
     let req
     return this.queryApi.doGet('Resource',req)

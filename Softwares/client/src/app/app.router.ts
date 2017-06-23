@@ -7,6 +7,8 @@ import { CreateResourceComponent } from './resource/create-resource/create-resou
 import { EditResourceComponent } from './resource/edit-resource/edit-resource.component';
 import { CreateProjectComponent } from './project/create-project/create-project.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
+import { ViewProjectComponent } from './project/view-project/view-project.component';
+import { ViewResourceComponent } from './resource/view-resource/view-resource.component';
 export const rootRouterConfig: Routes =[
   {path:'',  redirectTo:'login',pathMatch:'full'},
   {path:'login', component:LoginComponent},
@@ -14,6 +16,9 @@ export const rootRouterConfig: Routes =[
   {path : 'resource/create', component : CreateResourceComponent},
   {path : 'project/create', component : CreateProjectComponent},
   {path : 'resource/:id/edit',component : EditResourceComponent},
+  {path : 'project/:id/edit', component : EditProjectComponent},
+  {path : 'resource/:id/view',component :ViewResourceComponent},
+  {path :'project/:id/view', component: ViewProjectComponent},
 
   {path:'resource', component:ResourceComponent,
     children : [

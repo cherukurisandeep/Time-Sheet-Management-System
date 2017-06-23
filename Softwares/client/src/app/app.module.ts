@@ -22,7 +22,9 @@ import { EditResourceComponent } from './resource/edit-resource/edit-resource.co
 import { CreateProjectComponent } from './project/create-project/create-project.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { MomentModule } from 'angular2-moment';
-
+import { ViewProjectComponent } from './project/view-project/view-project.component';
+import { ViewResourceComponent } from './resource/view-resource/view-resource.component';
+import {MdAutocompleteModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,9 @@ import { MomentModule } from 'angular2-moment';
     CreateResourceComponent,
     EditResourceComponent,
     CreateProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    ViewProjectComponent,
+    ViewResourceComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,8 @@ import { MomentModule } from 'angular2-moment';
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     ReactiveFormsModule,
     SelectModule,
-    MomentModule
+    MomentModule,
+    MdAutocompleteModule
   ],
   providers: [QueryApi,RequestUtils],
   bootstrap: [AppComponent]

@@ -13,6 +13,7 @@ export class QueryApi{
   }
   doPost(url: any, params: any) {
     url = UserEndPoint(url, params);
+    alert('>>--->'+url);
     return this.http.post(url, params );
   }
 

@@ -73,16 +73,19 @@ export default class resourceDAO {
 
    */
   static  getById(_id) {
-    var d = _id
+    var d = _id;
+    // if(typeof d=== number){
+    //   console.log("Sai Sandeep Cherukuri")
+    // }
+    // console.log("<----->"+typeof d);
     let date = new Date(_id);
     if (date instanceof Date && !isNaN(date.valueOf())) {
       return new Promise((resolve, reject) => {
         console.log('getById Dao');
 
-
         // _id = '%'+_id+'%'
         resourceSchema.resource
-          .find({where: { id : _id}})
+          .find({where: {$or: [{ id : _id},{email : _id}]}})
           .then((users) => {
             if (!users) {
               return reject(404)

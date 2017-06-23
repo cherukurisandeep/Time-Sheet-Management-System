@@ -1,5 +1,7 @@
 import { environment } from './../../../environments/environment';
+import {retry} from "rxjs/operator/retry";
 export const USERS ='USERS'
+export const USEREDIT = 'USEREDIT'
 export const Resource ='Resource'
 export const ActionResource = 'ActionResource'
 export const Project ='Project'
@@ -7,8 +9,10 @@ export const ActionProject = 'ActionProject'
 export const UserEndPoint = (type:string,params:any)=>{
   switch(type){
     case USERS:
-
       return environment.API_ROOT + '/tsms/user/' +params ;
+    case USEREDIT:
+      alert("USEREDIT")
+      return environment.API_ROOT + '/tsms/user';
     case Resource:
       return environment.API_ROOT + '/tsms/resource';
     case Project:
@@ -26,8 +30,15 @@ export const UserEndPoint = (type:string,params:any)=>{
 
 
     case ActionProject:
-      alert(params + "<---->" + type);
-      return environment.API_ROOT + '/tsms/project/'+params;
+      let ActionPro = environment.API_ROOT +'/tsms/project';
+      if( params.hasOwnProperty('id')){
+        ActionPro +='/'+ params.id;
+      }
+      //alert(params + "<---->" + type);
+      else{
+        return environment.API_ROOT + '/tsms/project/'+params;
+      }
+      return ActionPro;
 
   }
 
