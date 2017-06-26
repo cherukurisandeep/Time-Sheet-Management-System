@@ -30,6 +30,7 @@ export class ViewResourceComponent implements OnInit {
       this.resource=(emp);
       // alert("service")
       console.log(this.resource);
+      console.log(this.resource[0].fistname)
     })
   }
   editPage(){

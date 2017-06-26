@@ -55,15 +55,15 @@ export class EditResourceComponent implements OnInit {
      // alert("service")
       console.log(this.resource);
       this.complexForm = this.fb.group({
-        'id'      : [this.resource.id,Validators.required],
-        'fistname' : [this.resource.fistname, Validators.required],
-        'lastname': [this.resource.lastname,  Validators.required],
-        'password' : [this.resource.password, Validators.required],
-        'email'    : [this.resource.email,Validators.required],
-        'dob' :[this.resource.dob,Validators.required],
-        'joindate' :[this.resource.joindate,Validators.required],
-        'enddate'  :[this.resource.enddate,Validators.required],
-        'role'  : [this.resource.role,Validators.required]
+        'id'      : [this.resource[0].id,Validators.required],
+        'fistname' : [this.resource[0].fistname, Validators.required],
+        'lastname': [this.resource[0].lastname,  Validators.required],
+        'password' : [this.resource[0].password, Validators.required],
+        'email'    : [this.resource[0].email,Validators.required],
+        'dob' :[this.resource[0].dob,Validators.required],
+        'joindate' :[this.resource[0].joindate,Validators.required],
+        'enddate'  :[this.resource[0].enddate,Validators.required],
+        'role'  : [this.resource[0].role,Validators.required]
       });
     })
 

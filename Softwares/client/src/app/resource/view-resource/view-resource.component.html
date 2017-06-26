@@ -6,13 +6,12 @@
   <h2 class="text-primary text-center"><strong>View Resource</strong></h2>
   <div class="col-md-2 col-lg-2"></div>
   <div class="col-md-8 col-lg-8 col-sm-12">
-    <form>
       <div class="form-group row">
         <div class="col-md-8 col-lg-8">
           <label> <h4><strong>First Name :</strong></h4></label>
         </div>
         <div class="col-md-2 col-lg-2">
-          <label> <h4>{{resource.fistname}}</h4></label>
+          <label> <h4>{{resource[0].fistname}}hello</h4></label>
         </div>
       </div>
       <div class="form-group row">
@@ -20,7 +19,7 @@
           <label> <h4>Last Name:</h4></label>
         </div>
         <div class="col-md-2 col-lg-2">
-          <label> <h4>{{resource.lastname}}</h4></label>
+          <label> <h4>{{resource[0].lastname}}</h4></label>
         </div>
       </div>
       <div class="form-group row">
@@ -28,7 +27,7 @@
           <label> <h4>Email</h4></label>
         </div>
         <div class="col-md-2 col-lg-2">
-          <label> <h4>{{resource.email}}</h4></label>
+          <label> <h4>{{resource[0].email}}</h4></label>
         </div>
       </div>
       <div class="form-group row">
@@ -36,7 +35,7 @@
           <label> <h4>Date of Birth</h4></label>
         </div>
         <div class="col-md-2 col-lg-2">
-          <label> <h4>{{resource.dob | date}}</h4></label>
+          <label> <h4>{{resource[0].dob | date}}</h4></label>
         </div>
       </div>
       <div class="form-group row">
@@ -44,7 +43,7 @@
           <label> <h4>Joined Date</h4></label>
         </div>
         <div class="col-md-2 col-lg-2">
-          <label> <h4>{{resource.joindate | date}}</h4></label>
+          <label> <h4>{{resource[0].joindate | date}}</h4></label>
         </div>
       </div>
       <div class="form-group row">
@@ -52,7 +51,7 @@
           <label> <h4>Termination Date</h4></label>
         </div>
         <div class="col-md-2 col-lg-2">
-          <label> <h4>{{resource.enddate | date}}</h4></label>
+          <label> <h4>{{resource[0].enddate | date}}</h4></label>
         </div>
       </div>
       <div class="form-group row">
@@ -60,11 +59,11 @@
           <label> <h4>Role</h4></label>
         </div>
         <div class="col-md-2 col-lg-2">
-          <label> <h4>{{resource.role}}</h4></label>
+          <label> <h4>{{resource[0].role}}</h4></label>
           <!--<input type="number" class="form-control" value="{{edit_p_id}}" name="edit_productid" [(ngModel)]="edit_p_id" disabled="disabled">-->
         </div>
       </div>
-    </form>
+
     <div class="col-md-1 pull-right">
       <button class="btn btn-danger pull-right">Delete</button>
     </div>

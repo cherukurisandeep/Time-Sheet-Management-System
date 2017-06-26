@@ -6,6 +6,16 @@
 <div class="wrapper">
   <div class="col-md-2 col-lg-2"></div>
   <div class="col-md-12 col-lg-12 col-sm-12">
+
+    <ng-select  #ng [allowClear]="true"
+               [items]="Projectname"
+               [disabled]="disabled"
+               (data)="refreshValue($event)"
+               (selected)="selected($event)"
+               (removed)="removed($event)"
+               (typed)="typed($event)"
+               placeholder="No Category selected">
+    </ng-select>
     <table class = "table table-hover">
       <thead>
       <tr>

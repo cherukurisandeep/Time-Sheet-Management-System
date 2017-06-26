@@ -75,17 +75,17 @@ export default class resourceDAO {
   static  getById(_id) {
     var d = _id;
     // if(typeof d=== number){
-    //   console.log("Sai Sandeep Cherukuri")
-    // }
+      //console.log("Sai Sandeep Cherukuri")
+    // }date instanceof Date && !isNaN(date.valueOf())
     // console.log("<----->"+typeof d);
     let date = new Date(_id);
-    if (date instanceof Date && !isNaN(date.valueOf())) {
+    if ( d.includes('@')) {
       return new Promise((resolve, reject) => {
         console.log('getById Dao');
 
         // _id = '%'+_id+'%'
         resourceSchema.resource
-          .find({where: {$or: [{ id : _id},{email : _id}]}})
+          .find({where: {$or: [{email : _id}]}})
           .then((users) => {
             if (!users) {
               return reject(404)
@@ -102,11 +102,9 @@ export default class resourceDAO {
     else {
       return new Promise((resolve, reject) => {
         console.log('getById Dao');
-
-
         // _id = '%'+_id+'%'
         resourceSchema.resource
-          .findAll({where: {$or: [{fistname: _id}, {lastname: _id}, {role: _id}]}})
+          .findAll({where: {id: _id}})
           .then((users) => {
             if (!users) {
               return reject(404)

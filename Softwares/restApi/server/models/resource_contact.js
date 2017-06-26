@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        resource_contact.hasMany(models.resources,{
+        resource_contact.belongsTo(models.resources,{
           as: 'resource',
           foreignKey :{
             resource_id : "id"

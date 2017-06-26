@@ -6,44 +6,44 @@
     <form [formGroup]="complexForm" (ngSubmit)="updateResource(complexForm.value)">
       <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['fistname'].valid && complexForm.controls['fistname'].touched}">
         <label>First Name</label>
-        <input class="form-control" type="text" placeholder="Product Id" value="{{resource.fistname}}" [formControl]="complexForm.controls['fistname']">
+        <input class="form-control" type="text" placeholder="Product Id" value="{{resource[0].fistname}}" [formControl]="complexForm.controls['fistname']">
         <div *ngIf="complexForm.controls['fistname'].hasError('required') && complexForm.controls['fistname'].touched" class="alert alert-danger">
           You must include a Product id
         </div>
       </div>
       <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['lastname'].valid && complexForm.controls['lastname'].touched}">
         <label>Last Name</label>
-        <input class="form-control" type="text" placeholder="Product Name" value="{{resource.lastname}}" [formControl]="complexForm.controls['lastname']">
+        <input class="form-control" type="text" placeholder="Product Name" value="{{resource[0].lastname}}" [formControl]="complexForm.controls['lastname']">
         <div *ngIf="complexForm.controls['lastname'].hasError('required') && complexForm.controls['lastname'].touched" class="alert alert-danger">You must include a last name.</div>
       </div>
       <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['password'].valid && complexForm.controls['password'].touched}">
         <label>Password </label>
-        <input class="form-control" type="password" placeholder="Enter price" value="{{resource.password}}" [formControl]="complexForm.controls['password']">
+        <input class="form-control" type="password" placeholder="Enter price" value="{{resource[0].password}}" [formControl]="complexForm.controls['password']">
         <div *ngIf="complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched" class="alert alert-danger">You must include a product price.</div>
       </div>
       <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['email'].valid && complexForm.controls['email'].touched}">
         <label>Email </label>
-        <input class="form-control" type="email" placeholder="Enter price" value="{{resource.email}}" [formControl]="complexForm.controls['email']">
+        <input class="form-control" type="email" placeholder="Enter price" value="{{resource[0].email}}" [formControl]="complexForm.controls['email']">
         <div *ngIf="complexForm.controls['email'].hasError('required') && complexForm.controls['email'].touched" class="alert alert-danger">You must include a product price.</div>
       </div>
       <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['dob'].valid && complexForm.controls['dob'].touched}">
         <label>Date Of Birth: </label>
-        <input class="form-control" type="date" placeholder="Enter price" value="{{resource.dob | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="complexForm.controls['dob']">
+        <input class="form-control" type="date" placeholder="Enter price" value="{{resource[0].dob | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="complexForm.controls['dob']">
         <div *ngIf="complexForm.controls['dob'].hasError('required') && complexForm.controls['dob'].touched" class="alert alert-danger">You must include a product price.</div>
       </div>
       <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['joindate'].valid && complexForm.controls['joindate'].touched}">
         <label>Join Date </label>
-        <input class="form-control" type="date" placeholder="Enter price" value="{{resource.joindate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="complexForm.controls['joindate']">
+        <input class="form-control" type="date" placeholder="Enter price" value="{{resource[0].joindate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="complexForm.controls['joindate']">
         <div *ngIf="complexForm.controls['joindate'].hasError('required') && complexForm.controls['joindate'].touched" class="alert alert-danger">You must include a product price.</div>
       </div>
       <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['enddate'].valid && complexForm.controls['enddate'].touched}">
         <label>End Date </label>
-        <input class="form-control" type="date" placeholder="Enter price" value="{{resource.enddate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="complexForm.controls['enddate']">
+        <input class="form-control" type="date" placeholder="Enter price" value="{{resource[0].enddate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="complexForm.controls['enddate']">
         <div *ngIf="complexForm.controls['enddate'].hasError('required') && complexForm.controls['enddate'].touched" class="alert alert-danger">You must include a product price.</div>
       </div>
       <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['role'].valid && complexForm.controls['role'].touched}">
         <label>Role </label>
-        <select class="form-control" placeholder="Select Gender" value="{{resource.role}}" [formControl]="complexForm.controls['role']" >
+        <select class="form-control" placeholder="Select Gender" value="{{resource[0].role}}" [formControl]="complexForm.controls['role']" >
           <optgroup label="Role">
             <option value="Employee">Employee</option>
             <option value="Admin">Admin</option>

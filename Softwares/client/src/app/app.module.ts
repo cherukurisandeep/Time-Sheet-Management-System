@@ -25,6 +25,7 @@ import { MomentModule } from 'angular2-moment';
 import { ViewProjectComponent } from './project/view-project/view-project.component';
 import { ViewResourceComponent } from './resource/view-resource/view-resource.component';
 import {MdAutocompleteModule} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
