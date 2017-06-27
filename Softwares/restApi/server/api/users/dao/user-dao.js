@@ -8,7 +8,7 @@ import _ from 'lodash';
 export default class User{
   static getAll(_query){
     return new Promise((resolve,reject)=>{
-      console.log('getall method called')
+      console.log('getall in users method called')
       //console.log(userSchema)
       userSchema.userlogin.findAndCountAll({})
         .then(users=>{
@@ -24,7 +24,7 @@ export default class User{
 
   static createNew(request){
     return new Promise((resolve,reject)=>{
-      console.log('enterd into createnew mrthod in dao')
+      console.log('<-----users dao---->')
       let _reqBody = request
       console.log(_reqBody.username)
       userSchema.userlogin.create({
@@ -38,7 +38,7 @@ export default class User{
         resolve(users)
       })
         .catch(error=>{
-          reject('Not Created ')
+          reject('Not Created')
 
         })
     })

@@ -10,10 +10,12 @@ module.exports = {
       },
       resource_id:{
         type:Sequelize.INTEGER,
-        references:{
-          model:"resources",
-          key : "id"
-        }
+        onDelete: 'CASCADE',
+        references: {
+          model: "resources",
+          key: "id"
+        },
+        allowNull: false
       },
       r_contact_type: {
         type: Sequelize.STRING

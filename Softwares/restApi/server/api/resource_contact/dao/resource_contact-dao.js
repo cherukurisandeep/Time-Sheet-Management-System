@@ -20,28 +20,39 @@ export default class resource_contactDAO {
     })
   }
 
-  static createNew(request) {
+  static createNew(request,r_id) {
     return new Promise((resolve, reject) => {
       console.log('enterd into createnew mrthod in dao')
       let _reqBody = request
-      resourceSchema.resource.findById(_reqBody.resource_id).then(resourceid=>{
-        if(!resourceid){
+      resourceSchema.Resource.findById(_reqBody.resource_id).then(resource=>{
+        if(!resource){
           reject('Resource Id is missing')
         }
-        console.log(resourceid.id);
+        else{
+          var a = Object.keys(resourceSchema.ResourceContact.rawAttributes)
+          console.log("---->");
+          console.log(a);
+        //  console.log('!!!!'+r_id);
+         // console.log("<--->>"+_reqBody.resource_id);
 
-      console.log(_reqBody.r_contact_type)
-      resourceSchema.resource_contact.create({
-        resource_id : resourceid.id,
-        r_contact_type: _reqBody.r_contact_type,
-        r_contact: _reqBody.r_contact
-      }).then(users => {
-        resolve(users)
-      })
-        .catch(error => {
-          reject('Not Created ')
+          //console.log(_reqBody.r_contact_type)
+          var contact = {
+            r_contact_type: _reqBody.r_contact_type,
+            resource_id: resource.id,
+            r_contact: _reqBody.r_contact
+          }
+          console.log('---contact:',JSON.stringify(contact))
+          resourceSchema.ResourceContact.create(contact).then(resourceContact => {
+            console.log('=====resourceContact: ',JSON.stringify(resourceContact));
+            resolve(resourceContact)
+          })
+            .catch(error => {
+              console.log(error)
+              reject('Not Created ')
 
-        })
+            })
+        }
+
       })
     })
 

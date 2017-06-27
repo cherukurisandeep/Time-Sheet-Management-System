@@ -12,9 +12,10 @@ export default class resource_contactController {
 
   static createNew(req, res) {
     let _user = req.body;
+    let r_id = _user.resource_id;
 
     resource_contactDAO
-      .createNew(_user)
+      .createNew(_user,r_id)
       .then(user => res.status(201).json(user).send(user))
       .catch(error => res.status(400).json(error));
   }

@@ -1,21 +1,25 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var resource_contact = sequelize.define('resource_contact', {
+  var ResourceContact = sequelize.define('ResourceContact', {
     r_contact_type: DataTypes.STRING,
     r_contact: DataTypes.STRING
   }, {
+    tableName: "resource_contacts",
+    underscore: true,
     classMethods: {
       associate: function(models) {
-        resource_contact.belongsTo(models.resources,{
-          as: 'resource',
+        ResourceContact.belongsTo(models.Resource,{
+          as:'resources',
           foreignKey :{
-            resource_id : "id"
+            name : "resource_id",
+            allowNull: false
           },
+          //targetKey: 'id',
           onDelete:"CASCADE"
         })
         // associations can be defined here
       }
     }
   });
-  return resource_contact;
+  return ResourceContact;
 };

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var resource = sequelize.define('resource', {
+  var Resource = sequelize.define('Resource', {
     fistname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     password: DataTypes.STRING,
@@ -10,11 +10,20 @@ module.exports = function(sequelize, DataTypes) {
     enddate: DataTypes.DATE,
     role: DataTypes.STRING
   }, {
+    tableName: "resources",
+    underscore: true,
     classMethods: {
       associate: function(models) {
+        Resource.hasMany(models.ResourceContact,{
+          as: 'resource_contacts',
+          foreignKey: {
+            name: "resource_id",
+            allowNull: false
+          }
+        })
         // associations can be defined here
       }
     }
   });
-  return resource;
+  return Resource;
 };

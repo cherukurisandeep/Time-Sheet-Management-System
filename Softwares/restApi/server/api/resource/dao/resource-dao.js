@@ -9,7 +9,7 @@ export default class resourceDAO {
     return new Promise((resolve, reject) => {
       console.log('getall method called')
       //console.log(userSchema)
-      resourceSchema.resource.findAll({})
+      resourceSchema.Resource.findAll({})
         .then(users => {
           //console.log('all users are'+JSON.stringify(users))
           resolve(users)
@@ -26,7 +26,7 @@ export default class resourceDAO {
       console.log('enterd into createnew mrthod in dao')
       let _reqBody = request
       console.log(_reqBody.fistname)
-      resourceSchema.resource.create({
+      resourceSchema.Resource.create({
         fistname: _reqBody.fistname,
         lastname: _reqBody.lastname,
         password: _reqBody.password,
@@ -49,7 +49,7 @@ export default class resourceDAO {
   static removeById(_id) {
     return new Promise((resolve, reject) => {
       console.log('in dao')
-      resourceSchema.resource
+      resourceSchema.Resource
         .findById(_id)
         .then(user => {
           if (!user) {
@@ -84,7 +84,7 @@ export default class resourceDAO {
         console.log('getById Dao');
 
         // _id = '%'+_id+'%'
-        resourceSchema.resource
+        resourceSchema.Resource
           .find({where: {$or: [{email : _id}]}})
           .then((users) => {
             if (!users) {
@@ -103,7 +103,7 @@ export default class resourceDAO {
       return new Promise((resolve, reject) => {
         console.log('getById Dao');
         // _id = '%'+_id+'%'
-        resourceSchema.resource
+        resourceSchema.Resource
           .findAll({where: {id: _id}})
           .then((users) => {
             if (!users) {
@@ -124,7 +124,7 @@ export default class resourceDAO {
     return new Promise((resolve, reject) => {
      _id = _reqBody.id;
      console.log(_id);
-      resourceSchema.resource
+      resourceSchema.Resource
         .update({
             id     : _reqBody.id,
             fistname: _reqBody.fistname,
