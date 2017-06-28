@@ -2,12 +2,13 @@
 module.exports = function(sequelize, DataTypes) {
   var ResourceContact = sequelize.define('ResourceContact', {
     r_contact_type: DataTypes.STRING,
-    r_contact: DataTypes.STRING
+    r_contact: DataTypes.STRING,
+    //resource_id : DataTypes.INTEGER
   }, {
     tableName: "resource_contacts",
     underscore: true,
     classMethods: {
-      associate: function(models) {
+      associate: models => {
         ResourceContact.belongsTo(models.Resource,{
           as:'resources',
           foreignKey :{

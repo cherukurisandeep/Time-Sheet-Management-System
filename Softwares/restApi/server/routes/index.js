@@ -3,6 +3,7 @@ import Persondata from "../api/persons/route/person-route"
 import resourceRoutes from "../api/resource/route/resource-route"
 import projectRoutes from "../api/project/route/project-route"
 import resource_contactRoutes from "../api/resource_contact/route/resource_contact-route"
+import assosiationController from "../api/resource_project_assosiation/route/assosiation-route"
 
 export default class Routes {
    static init(app, router) {
@@ -12,6 +13,8 @@ export default class Routes {
      resourceRoutes.init(router);
      projectRoutes.init(router);
      resource_contactRoutes.init(router);
+     assosiationController.init(router);
+
 
      app.get("/tsms",(req,res)=> res.status(200).send({
        message : "Its just a get menthos"

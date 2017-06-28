@@ -3,12 +3,12 @@ import assosiationController from '../controller/assosiation-controller';
 export default class assosiationRoutes {
   static init(router) {
     router
-      .route('/api/assosiation')
+      .route('/tsms/ass/resource/:id/project/:id')
       .get(assosiationController.getAll)
       .post(assosiationController.createNew);
 
     router
-      .route('/api/assosiation/:id')
+      .route('/tsms/assosiation/:id')
       .delete(assosiationController.removeById);
   }
 }

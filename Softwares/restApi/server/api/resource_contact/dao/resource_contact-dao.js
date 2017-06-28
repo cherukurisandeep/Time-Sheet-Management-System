@@ -38,7 +38,7 @@ export default class resource_contactDAO {
           //console.log(_reqBody.r_contact_type)
           var contact = {
             r_contact_type: _reqBody.r_contact_type,
-            resource_id: resource.id,
+            resource_id: _reqBody.resource_id,
             r_contact: _reqBody.r_contact
           }
           console.log('---contact:',JSON.stringify(contact))

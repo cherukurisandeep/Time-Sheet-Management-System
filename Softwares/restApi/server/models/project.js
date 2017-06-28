@@ -8,6 +8,13 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
+        project.belongsToMany(models.Resource,{
+          as: 'resource_project_assosiation',
+          foreignKey: {
+            name: "project_id",
+            allowNull: false
+          }
+        })
         // associations can be defined here
       }
     }

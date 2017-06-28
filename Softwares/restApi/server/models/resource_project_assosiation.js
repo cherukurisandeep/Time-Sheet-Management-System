@@ -4,12 +4,18 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        resource_contact.hasMany(models.resources,models.projects,{
+        resource_project_assosiation.belongsTo(models.resources,{
           foreignKey :{
-            resource_id : "id",
-            project_id : "id"
+            name  : "resource_id",
+            allowNull : false
           },
           onDelete:"CASCADE"
+        })
+        resource_project_assosiation.belongsTo(models.project,{
+          foreignKey :{
+            name : "project_id",
+            allowNull : false
+          }
         })
 
         // associations can be defined here

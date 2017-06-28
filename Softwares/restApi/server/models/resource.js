@@ -13,11 +13,18 @@ module.exports = function(sequelize, DataTypes) {
     tableName: "resources",
     underscore: true,
     classMethods: {
-      associate: function(models) {
-        Resource.hasMany(models.ResourceContact,{
+      associate: models=> {
+        Resource.belongsToMany(models.ResourceContact,{
           as: 'resource_contacts',
           foreignKey: {
             name: "resource_id",
+            allowNull: false
+          }
+        })
+        Resource.belongsToMany(models.project,{
+          as : 'resource_project_assosiation',
+          foreignKey : {
+            name : "resource_id",
             allowNull: false
           }
         })
