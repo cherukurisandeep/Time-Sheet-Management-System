@@ -9,6 +9,7 @@ import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import {QueryApi} from '../commonservice/request/QueryApi';
 import {RequestUtils} from '../commonservice/request/requestUtils'
+import {_catch} from "rxjs/operator/catch";
 @Injectable()
 export class projectService{
   constructor(private http: Http,private queryApi : QueryApi){
@@ -58,13 +59,23 @@ export class projectService{
 
       })
   }
-  updateResource(params):Observable<any>{
+  updateProject(params):Observable<any>{
     return this.queryApi.doPut('ActionProject',params)
       .map((res:Response)=>{
         return res
       })
       .catch((error : any)=>{
         return Observable.throw(error || 'server error')
+      })
+  }
+  getAssosiatedData() : Observable<any>{
+    let req
+    return this.queryApi.doGet('Ass',req)
+      .map((res:Response)=>{
+      return res.json()
+    })
+      .catch((error : any)=>{
+      return Observable.throw(error || 'server error')
       })
   }
 }

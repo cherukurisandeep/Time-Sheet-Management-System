@@ -6,8 +6,11 @@ export const Resource ='Resource'
 export const ActionResource = 'ActionResource'
 export const Project ='Project'
 export const ActionProject = 'ActionProject'
+export const Ass = 'Ass'
 export const UserEndPoint = (type:string,params:any)=>{
   switch(type){
+    case Ass :
+      return environment.API_ROOT + '/tsms/assosiate';
     case USERS:
       return environment.API_ROOT + '/tsms/user/' +params ;
     case USEREDIT:

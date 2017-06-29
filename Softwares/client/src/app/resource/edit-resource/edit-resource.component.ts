@@ -62,7 +62,7 @@ export class EditResourceComponent implements OnInit {
         'email'    : [this.resource[0].email,Validators.required],
         'dob' :[this.resource[0].dob,Validators.required],
         'joindate' :[this.resource[0].joindate,Validators.required],
-        'enddate'  :[this.resource[0].enddate,Validators.required],
+        'enddate'  :[this.resource[0].termdate,Validators.required],
         'role'  : [this.resource[0].role,Validators.required]
       });
     })

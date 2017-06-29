@@ -42,7 +42,7 @@ export class EditProjectComponent implements OnInit {
   }
   editProject(value){
     console.log(value);
-    this.proService.updateResource(value).subscribe(resupdate=>{
+    this.proService.updateProject(value).subscribe(resupdate=>{
       alert(resupdate.status);
       this.Router.navigate(['/project']);
     })
@@ -63,8 +63,6 @@ export class EditProjectComponent implements OnInit {
         'enddate' : [this.project.enddate, Validators.required],
       });
     })
-
-
   }
 
 }

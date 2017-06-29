@@ -4,10 +4,10 @@
 <div class="col-md-8 col-lg-8 col-sm-12">
   <h3 class="text-center text-primary"><strong>Create New Resource</strong></h3>
 <form [formGroup]="complexForm" (ngSubmit)="addResource(complexForm.value)">
-  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['fistname'].valid && complexForm.controls['fistname'].touched}">
+  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['firstname'].valid && complexForm.controls['firstname'].touched}">
     <label>First Name</label>
-    <input class="form-control" type="text" placeholder="Product Id" [formControl]="complexForm.controls['fistname']">
-    <div *ngIf="complexForm.controls['fistname'].hasError('required') && complexForm.controls['fistname'].touched" class="alert alert-danger">
+    <input class="form-control" type="text" placeholder="Product Id" [formControl]="complexForm.controls['firstname']">
+    <div *ngIf="complexForm.controls['firstname'].hasError('required') && complexForm.controls['firstname'].touched" class="alert alert-danger">
       You must include a Product id
     </div>
   </div>
@@ -36,10 +36,10 @@
     <input class="form-control" type="date" placeholder="Enter price" [formControl]="complexForm.controls['joindate']">
     <div *ngIf="complexForm.controls['joindate'].hasError('required') && complexForm.controls['joindate'].touched" class="alert alert-danger">You must include a product price.</div>
   </div>
-  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['enddate'].valid && complexForm.controls['enddate'].touched}">
+  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['termdate'].valid && complexForm.controls['termdate'].touched}">
     <label>End Date </label>
-    <input class="form-control" type="date" placeholder="Enter price" [formControl]="complexForm.controls['enddate']">
-    <div *ngIf="complexForm.controls['enddate'].hasError('required') && complexForm.controls['enddate'].touched" class="alert alert-danger">You must include a product price.</div>
+    <input class="form-control" type="date" placeholder="Enter price" [formControl]="complexForm.controls['termdate']">
+    <div *ngIf="complexForm.controls['termdate'].hasError('required') && complexForm.controls['termdate'].touched" class="alert alert-danger">You must include a product price.</div>
   </div>
   <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['role'].valid && complexForm.controls['role'].touched}">
     <label>Role </label>

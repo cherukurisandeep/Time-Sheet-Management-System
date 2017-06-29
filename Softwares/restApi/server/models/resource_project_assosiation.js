@@ -2,6 +2,8 @@
 module.exports = function(sequelize, DataTypes) {
   var resource_project_assosiation = sequelize.define('resource_project_assosiation', {
   }, {
+    tableName: "resource_project_assosiation",
+    underscore: true,
     classMethods: {
       associate: function(models) {
         resource_project_assosiation.belongsTo(models.resources,{

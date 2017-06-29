@@ -53,5 +53,24 @@
   <div class="col-md-1 pull-right">
     <button class="btn btn-success pull-right" (click)="projectPage()">Ok</button>
   </div>
+  <div class="row">
+    <div class="pad">
+    <h1 class="text-center text-primary">Employees in <strong>{{project.name}} </strong></h1>
+      <div class="row">
+        <div class="col-md-8 col-lg-8">
+          <ng-select #ng [allowClear]="true"
+                     [items]="arry"
+                     (data)="refreshValue($event)"
+                     (removed)="removed($event)"
+                     (typed)="typed($event)"
+                     placeholder="Click Here To Add">
+          </ng-select>
+        </div>
+        <div class="col-md-2 col-lg-2">
+          <button class="btn btn-primary" (click)="selected(value.text)">Assosiate</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>

@@ -33,6 +33,7 @@ export default class assosiationDAO {
         resolve(projects)
       })
         .catch(error => {
+          console.log(error);
           reject('Not Created ')
 
         })

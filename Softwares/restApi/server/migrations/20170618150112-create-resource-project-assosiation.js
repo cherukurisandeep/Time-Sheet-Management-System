@@ -10,17 +10,21 @@ module.exports = {
       },
       resource_id:{
         type:Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references:{
           model:"resources",
           key : "id"
-        }
+        },
+        allowNull: false,
       },
       project_id:{
         type:Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references:{
           model:"projects",
           key : "id"
-        }
+        },
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

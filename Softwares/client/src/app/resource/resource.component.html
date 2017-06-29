@@ -21,12 +21,12 @@
   <tbody>
   <tr *ngFor="let i of resource;let j = index">
     <td>{{i.id}}</td>
-    <td>{{i.fistname}}</td>
+    <td>{{i.firstname}}</td>
     <td>{{i.lastname}}</td>
     <td>{{i.email}}</td>
     <td>{{i.dob | date}}</td>
     <td>{{i.joindate | date}}</td>
-    <td>{{i.enddate | date}}</td>
+    <td>{{i.termdate | date}}</td>
     <td>{{i.role}}</td>
     <td><button type="button" class="btn btn-success btn-sm" (click)="editResource(i.id)">
       <span class="glyphicon glyphicon-pencil"></span>

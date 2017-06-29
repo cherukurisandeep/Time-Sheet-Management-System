@@ -16,13 +16,13 @@ export class CreateResourceComponent implements OnInit {
   public complexForm : FormGroup;
   constructor(private fb: FormBuilder,private resService : resourceService,private Router: Router) {
     this.complexForm = fb.group({
-      'fistname' : [null, Validators.required],
+      'firstname' : [null, Validators.required],
       'lastname': [null,  Validators.required],
       'password' : [null, Validators.required],
       'email'    : [null,Validators.required],
       'dob' :[null,Validators.required],
       'joindate' :[null,Validators.required],
-      'enddate'  :[null,Validators.required],
+      'termdate'  :[null,Validators.required],
       'role'  : [null,Validators.required]
     });
     console.log(this.complexForm);
