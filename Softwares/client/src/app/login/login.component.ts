@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {loginService} from "./login-service";
+import {resourceService} from "../resource/resource-service"
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers :[loginService]
+  providers :[loginService,resourceService]
 })
 export class LoginComponent implements OnInit {
 
   public complexForm : FormGroup;
 
-  constructor(private Routes:Router,public fb: FormBuilder,private loginservice : loginService) {
+  constructor(public localStorageService: LocalStorageService,private Routes:Router,public fb: FormBuilder,private loginservice : loginService,private resService : resourceService) {
     this.complexForm = fb.group({
       'username': [null, Validators.required],
       'password': [null, Validators.required]
@@ -33,22 +35,23 @@ export class LoginComponent implements OnInit {
   getAdmin(value)
   {
     console.log(value);
-    this.loginservice.getUsers(value.username).subscribe(users=>{
+    this.resService.getResource(value.username).subscribe(users=>{
       console.log(users);
-      if(users.username == value.username && users.password == value.password){
+      //console.log(users.status)
+      if(users.email == value.username && users.password == value.password && users.role == 'Admin'){
         console.log("trye");
-        alert("Succees");
+
+       // alert("Succees");
+        this.localStorageService.set("username",users.firstname);
         this.Routes.navigate(['/home']);
       }
+      else{
+        window.location.reload();
+      }
+    },(error)=>{
+      alert("invalid userid & password")
+      window.location.reload()
     })
 
   }
-/*  loadClient(query) {
-    this.searchQuery = query;
-    this.loginservice.getUsers(query).subscribe(clients => {
-      this.clientData = clients.data.items;
-      this.totalItems = clients.totalItems;
-
-    });
-  }*/
 }

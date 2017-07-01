@@ -14,6 +14,7 @@ import {Router} from '@angular/router';
 })
 export class CreateResourceComponent implements OnInit {
   public complexForm : FormGroup;
+  public emailChecker =[]
   constructor(private fb: FormBuilder,private resService : resourceService,private Router: Router) {
     this.complexForm = fb.group({
       'firstname' : [null, Validators.required],
@@ -39,7 +40,8 @@ export class CreateResourceComponent implements OnInit {
       console.log(users);
 
      alert("resoure created");
-     this.createUser(value);
+     //this.createUser(value);
+      this.Router.navigate(['/resource'])
 
     });
 
@@ -66,7 +68,9 @@ export class CreateResourceComponent implements OnInit {
   emailCheck(email){
     console.log(email);
     this.resService.getResource(email).subscribe(sub=>{
+
       console.log(sub);
+      this.emailChecker = sub
     })
   }
 

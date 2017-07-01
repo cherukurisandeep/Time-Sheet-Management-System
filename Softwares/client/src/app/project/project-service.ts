@@ -68,14 +68,33 @@ export class projectService{
         return Observable.throw(error || 'server error')
       })
   }
-  getAssosiatedData() : Observable<any>{
+  getAssosiatedData(id) : Observable<any>{
     let req
-    return this.queryApi.doGet('Ass',req)
+    return this.queryApi.doGet('Ass',id)
       .map((res:Response)=>{
       return res.json()
     })
       .catch((error : any)=>{
       return Observable.throw(error || 'server error')
       })
+  }
+  createAssosiation(params) : Observable<any>{
+    return this.queryApi.doPost('CreateAss',params)
+      .map((res : Response)=>{
+      return res.json()
+      })
+      .catch((error : any)=>{
+      return Observable.throw(error || 'Server error')
+      })
+  }
+  deleteAssosiation(params): Observable<any>{
+    return this.queryApi.doDelete("Ass",params)
+      .map((res : Response)=>{
+      return res
+      })
+      .catch((error :any)=>{
+      return Observable.throw(error || "Server error")
+      })
+
   }
 }

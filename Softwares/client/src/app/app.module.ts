@@ -25,6 +25,9 @@ import { MomentModule } from 'angular2-moment';
 import { ViewProjectComponent } from './project/view-project/view-project.component';
 import { ViewResourceComponent } from './resource/view-resource/view-resource.component';
 import {MdAutocompleteModule} from '@angular/material';
+import { LocalStorageModule } from 'angular-2-local-storage';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import {MdAutocompleteModule} from '@angular/material';
     CreateProjectComponent,
     EditProjectComponent,
     ViewProjectComponent,
-    ViewResourceComponent
+    ViewResourceComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,10 @@ import {MdAutocompleteModule} from '@angular/material';
     ReactiveFormsModule,
     SelectModule,
     MomentModule,
-    MdAutocompleteModule
+    MdAutocompleteModule,
+    LocalStorageModule.withConfig({
+      prefix: 'my-app',
+      storageType: 'localStorage'}),
   ],
   providers: [QueryApi,RequestUtils],
   bootstrap: [AppComponent]

@@ -26,13 +26,13 @@ export class EditResourceComponent implements OnInit {
     this.getResource(this.uservalue);
     this.complexForm = fb.group({
       'id'      : ['',Validators.required],
-      'fistname' : ['', Validators.required],
+      'firstname' : ['', Validators.required],
       'lastname': ['',  Validators.required],
       'password' : ['', Validators.required],
       'email'    : ['',Validators.required],
       'dob' :['',Validators.required],
       'joindate' :['',Validators.required],
-      'enddate'  :['',Validators.required],
+      'termdate'  :['',Validators.required],
       'role'  : ['',Validators.required]
     });
     console.log(this.complexForm);
@@ -56,13 +56,13 @@ export class EditResourceComponent implements OnInit {
       console.log(this.resource);
       this.complexForm = this.fb.group({
         'id'      : [this.resource[0].id,Validators.required],
-        'fistname' : [this.resource[0].fistname, Validators.required],
+        'firstname' : [this.resource[0].firstname, Validators.required],
         'lastname': [this.resource[0].lastname,  Validators.required],
         'password' : [this.resource[0].password, Validators.required],
         'email'    : [this.resource[0].email,Validators.required],
         'dob' :[this.resource[0].dob,Validators.required],
         'joindate' :[this.resource[0].joindate,Validators.required],
-        'enddate'  :[this.resource[0].termdate,Validators.required],
+        'termdate'  :[this.resource[0].termdate,Validators.required],
         'role'  : [this.resource[0].role,Validators.required]
       });
     })

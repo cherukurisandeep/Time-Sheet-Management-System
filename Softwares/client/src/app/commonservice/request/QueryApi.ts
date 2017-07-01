@@ -13,6 +13,7 @@ export class QueryApi{
   }
   doPost(url: any, params: any) {
     url = UserEndPoint(url, params);
+    console.log("obh",params);
     alert('>>--->'+url);
     return this.http.post(url, params );
   }
@@ -23,6 +24,7 @@ export class QueryApi{
   }
   doPut(url: any, params: any) {
     url = UserEndPoint(url, params);
+    console.log(url);
     return this.http.put(url, params);
   }
 }
