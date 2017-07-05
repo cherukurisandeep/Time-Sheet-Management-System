@@ -27,7 +27,8 @@ import { ViewResourceComponent } from './resource/view-resource/view-resource.co
 import {MdAutocompleteModule} from '@angular/material';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { UserHeaderComponent } from './user-header/user-header.component';
+import { DatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     EditProjectComponent,
     ViewProjectComponent,
     ViewResourceComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LocalStorageModule.withConfig({
       prefix: 'my-app',
       storageType: 'localStorage'}),
+    DatepickerModule.forRoot()
   ],
   providers: [QueryApi,RequestUtils],
   bootstrap: [AppComponent]

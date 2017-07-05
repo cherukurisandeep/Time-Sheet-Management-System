@@ -9,6 +9,8 @@ import { CreateProjectComponent } from './project/create-project/create-project.
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { ViewProjectComponent } from './project/view-project/view-project.component';
 import { ViewResourceComponent } from './resource/view-resource/view-resource.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 export const rootRouterConfig: Routes =[
   {path:'',  redirectTo:'login',pathMatch:'full'},
   {path:'login', component:LoginComponent},
@@ -19,7 +21,7 @@ export const rootRouterConfig: Routes =[
   {path : 'project/:id/edit', component : EditProjectComponent},
   {path : 'resource/:id/view',component :ViewResourceComponent},
   {path :'project/:id/view', component: ViewProjectComponent},
-
+  {path : 'dashboard', component: DashboardComponent},
   {path:'resource', component:ResourceComponent,
     children : [
       {path : 'create', component : CreateResourceComponent},
