@@ -1,0 +1,11 @@
+<div style="width: 300px; margin-bottom: 20px;">
+  <ng-select #ng [allowClear]="true"
+             [items]="ProjectList"
+             [disabled]="disabled"
+             (data)="refreshValue($event)"
+             (selected)="selected($event)"
+             (removed)="removed($event)"
+             (typed)="typed($event)"
+             placeholder="No Project Selected">
+  </ng-select>
+</div>

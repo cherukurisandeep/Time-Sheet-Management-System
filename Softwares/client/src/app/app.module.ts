@@ -29,6 +29,9 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TabsModule } from 'ngx-bootstrap';
+import { TimeSheetDataComponent } from './dashboard/time-sheet-data/time-sheet-data.component';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { DatepickerModule } from 'ngx-bootstrap/datepicker';
     ViewProjectComponent,
     ViewResourceComponent,
     DashboardComponent,
-    UserHeaderComponent
+    UserHeaderComponent,
+    TimeSheetDataComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,8 @@ import { DatepickerModule } from 'ngx-bootstrap/datepicker';
     LocalStorageModule.withConfig({
       prefix: 'my-app',
       storageType: 'localStorage'}),
-    DatepickerModule.forRoot()
+    DatepickerModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [QueryApi,RequestUtils],
   bootstrap: [AppComponent]

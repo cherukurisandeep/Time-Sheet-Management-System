@@ -1,20 +1,57 @@
-<p>
-  dashboard works!
-</p>
-
-<div>
-  <div class="card">
+<div class="card">
+  <pre class="card-block card-header">Selected date is: <em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
+</div>
+<!--<div>
+  &lt;!&ndash;<div class="card">
     <pre class="card-block card-header">Selected date is: <em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
+  </div>&ndash;&gt;
+  <div class="col-md-2 col-lg-2"></div>
+  <div class="col-md-6 col-lg-6 col-sm-12-->
+<div class="row" >
+  <div class="col-md-2 col-lg-2">
+    <div style="display:inline-block; min-height:290px;">
+      <datepicker [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+    </div>
   </div>
-  <h4>Inline</h4>
-  <div style="display:inline-block; min-height:290px;">
-    <datepicker [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
-  </div>
+  <div class="col-md-1 col-lg-1"></div>
+  <div class="col-md-8 col-lg-8">
 
-  <hr />
-  <button type="button" class="btn btn-sm btn-info" (click)="today()">Today</button>
-  <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="d20090824();">2009-08-24</button>
-  <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
-  <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="toggleMin()" tooltip="After today restriction">Min date</button>
-  <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="disableTomorrow()">Disable Tomorrow</button>
+    <tabset #staticTabs>
+      <tab heading="{{dateArray[0]|date}}">
+
+        <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[0])">
+        </app-time-sheet-data>
+      </tab>
+      <tab heading="{{dateArray[1]|date}}">
+        <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event, dateArray[1])">
+        </app-time-sheet-data>
+      </tab>
+      <tab heading="{{dateArray[2]|date}}">
+        <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[2])">
+        </app-time-sheet-data>
+      </tab>
+      <tab heading="{{dateArray[3]|date}}">
+        <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[3])">
+        </app-time-sheet-data>
+      </tab>
+      <tab heading="{{dateArray[4]|date}}">
+        <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[4])">
+        </app-time-sheet-data>
+      </tab>
+      <tab heading="{{dateArray[5]|date}}">
+        <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[5])">
+        </app-time-sheet-data>
+      </tab>
+      <tab heading="{{dateArray[6]|date}}">
+        <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[6])">
+        </app-time-sheet-data>
+      </tab>
+    </tabset>
+  </div>
+  <!-- <hr />
+   <button type="button" class="btn btn-sm btn-info" (click)="today()">Today</button>
+   <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="d20090824();">2009-08-24</button>
+   <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+   <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="toggleMin()" tooltip="After today restriction">Min date</button>
+   <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="disableTomorrow()">Disable Tomorrow</button-->
 </div>
