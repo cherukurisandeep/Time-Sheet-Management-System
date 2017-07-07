@@ -33,7 +33,7 @@ export class projectService{
     let req
     return this.queryApi.doGet('Project',req)
       .map((res:Response)=>{
-        console.log(res.json());
+       // console.log(res.json());
         return res.json();
       })
       .catch((error :any)=>{

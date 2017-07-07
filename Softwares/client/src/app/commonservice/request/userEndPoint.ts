@@ -1,5 +1,6 @@
 import { environment } from './../../../environments/environment';
 import {retry} from "rxjs/operator/retry";
+import {isUndefined} from "util";
 export const USERS ='USERS'
 export const USEREDIT = 'USEREDIT'
 export const Resource ='Resource'
@@ -8,12 +9,17 @@ export const Project ='Project'
 export const ActionProject = 'ActionProject'
 export const Ass = 'Ass'
 export const CreateAss = 'CreateAss'
+export const TimeSheet = 'TimeSheet'
+export const ActionTimeSheet = 'ActionTimeSheet'
 export const UserEndPoint = (type:string,params:any)=>{
   switch(type){
+    case ActionTimeSheet:
+      return environment.API_ROOT + '/tsms/timesheet/' + params;
+    case TimeSheet:
+        return environment.API_ROOT + '/tsms/timesheet';
     case Ass :
       return environment.API_ROOT + '/tsms/assosiate/' +params;
     case CreateAss :
-      alert("hi")
       return environment.API_ROOT + '/tsms/assosiate';
     case USERS:
       return environment.API_ROOT + '/tsms/user/' +params ;

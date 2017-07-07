@@ -22,16 +22,16 @@ export class TimeSheetDataComponent implements OnInit {
   }
   getProjects(){
     this.proService.getAllProjects().subscribe(projects=>{
-      console.log(projects);
+     // console.log(projects);
       for(let i =0;i<projects.length;i++){
         let obj={
           id : projects[i].id,
           text : projects[i].name
         }
-        console.log(obj);
+       // console.log(obj);
         this.ProjectList.push(obj);
       }
-      console.log(this.ProjectList)
+      //console.log(this.ProjectList)
       this.ngSelect.items=this.ProjectList;
     })
   }

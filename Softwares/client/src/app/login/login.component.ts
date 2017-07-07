@@ -38,12 +38,19 @@ export class LoginComponent implements OnInit {
     this.resService.getResource(value.username).subscribe(users=>{
       console.log(users);
       //console.log(users.status)
-      if(users.email == value.username && users.password == value.password && users.role == 'Admin'){
+      if(users.email == value.username && users.password == value.password){
+        this.localStorageService.set("username",users);
+        if(users.role == 'Admin'){
+          this.Routes.navigate(['/home']);
+        }
+        else {
+          this.Routes.navigate(['/dashboard']);
+        }
         console.log("trye");
 
        // alert("Succees");
-        this.localStorageService.set("username",users.firstname);
-        this.Routes.navigate(['/home']);
+
+
       }
       else{
         window.location.reload();

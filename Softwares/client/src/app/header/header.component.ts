@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public username
+  public username:any
 
   constructor(public localStorageService: LocalStorageService,public router :Router  ) {
     this.username=this.localStorageService.get('username');

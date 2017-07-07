@@ -9,12 +9,13 @@ export class QueryApi{
   doGet(url: any, params: any) {
     //alert(params +'==>' + url)
     url = UserEndPoint(url, params);
+    //alert('<-->'+url)
     return this.http.get(url, params );
   }
   doPost(url: any, params: any) {
     url = UserEndPoint(url, params);
     console.log("obh",params);
-    alert('>>--->'+url);
+    //alert('>>--->'+url);
     return this.http.post(url, params );
   }
 

@@ -21,37 +21,53 @@
 
         <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[0])">
         </app-time-sheet-data>
+        <input class="col-md-4" [(ngModel)]="day1" placeholder="hours">
+
+
       </tab>
       <tab heading="{{dateArray[1]|date}}">
         <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event, dateArray[1])">
-        </app-time-sheet-data>
+        </app-time-sheet-data >
+        <input class="col-md-4" [(ngModel)]="day2" placeholder="hours">
       </tab>
       <tab heading="{{dateArray[2]|date}}">
         <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[2])">
         </app-time-sheet-data>
+        <input class="col-md-4" [(ngModel)]="day3" placeholder="hours">
       </tab>
       <tab heading="{{dateArray[3]|date}}">
         <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[3])">
         </app-time-sheet-data>
+        <input class="col-md-4" [(ngModel)]="day4" placeholder="hours">
       </tab>
       <tab heading="{{dateArray[4]|date}}">
         <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[4])">
         </app-time-sheet-data>
+        <input class="col-md-4" [(ngModel)]="day5" placeholder="hours">
       </tab>
       <tab heading="{{dateArray[5]|date}}">
         <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[5])">
         </app-time-sheet-data>
+        <input class="col-md-4" [(ngModel)]="day6" placeholder="hours">
       </tab>
       <tab heading="{{dateArray[6]|date}}">
         <app-time-sheet-data  [ProjectsSearch]='ProjectsSearch' (getSelectedProject)="getProject($event,dateArray[6])">
         </app-time-sheet-data>
+        <input class="col-md-4" [(ngModel)]="day7" placeholder="hours">
       </tab>
     </tabset>
   </div>
+
   <!-- <hr />
    <button type="button" class="btn btn-sm btn-info" (click)="today()">Today</button>
    <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="d20090824();">2009-08-24</button>
    <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
    <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="toggleMin()" tooltip="After today restriction">Min date</button>
    <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="disableTomorrow()">Disable Tomorrow</button-->
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+  <button class="btn btn-success pull-right" (click)="saveTimeSheet()">Save</button>
+  </div>
 </div>
