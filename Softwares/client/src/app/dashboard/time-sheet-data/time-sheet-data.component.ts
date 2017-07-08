@@ -70,6 +70,4 @@ export class TimeSheetDataComponent implements OnInit {
       }).join(',');
   }
 
-
-
 }

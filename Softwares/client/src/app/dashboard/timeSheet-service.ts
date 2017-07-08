@@ -9,6 +9,7 @@ import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import {QueryApi} from '../commonservice/request/QueryApi';
 import {RequestUtils} from '../commonservice/request/requestUtils'
+import {retry} from "rxjs/operator/retry";
 
 @Injectable()
 export class timeSheetService{
@@ -44,6 +45,34 @@ export class timeSheetService{
       })
       .catch((error: any)=>{
       return Observable.throw(error.json().error || 'Server Error')
+      })
+  }
+  getTimeSheetEntries(params):Observable<any>{
+    return this.queryApi.doGet('ActionTimeSheetEntery',params)
+      .map((res : Response)=>{
+      return res.json()
+      })
+      .catch((error:any)=>{
+      return Observable.throw(error.json().error || 'Server error in GetTimeSheetEnteryID')
+      })
+  }
+  createTimeSheetEntries(params):Observable<any>{
+    alert('came to create')
+    return this.queryApi.doPost('TimeSheetEntery',params)
+      .map((res : Response)=>{
+      return res.json()
+      })
+      .catch((error:any)=>{
+      return Observable.throw(error.json().error || 'Server Errro in Create')
+      })
+  }
+  UpdateTimeSheetEnteries(params):Observable<any>{
+    return this.queryApi.doPut('TimeSheetEntery',params)
+      .map((res:Response)=>{
+      return res.json()
+      })
+      .catch((error:any)=>{
+      return Observable.throw(error.json().error || 'Server Error in Update')
       })
   }
 }

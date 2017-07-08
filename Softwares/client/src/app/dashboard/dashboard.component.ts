@@ -13,9 +13,10 @@ import { LocalStorageService } from 'angular-2-local-storage';
 })
 export class DashboardComponent {
   @ViewChild('staticTabs') staticTabs: TabsetComponent;
+  public ProjectsSearch:any =[]
   public username:any
   public Sheets=[]
-  public timeSheetArray = [];
+  public timeSheetEntryArray = [];
   public hours= 0
   public timeSheetId;
   public timeSheetObject={};
@@ -63,29 +64,30 @@ export class DashboardComponent {
   }
   ActionTimeSheet(){
     let flag=0
-    //alert(this.username.id)
     this.timeService.getTimeSheet(this.username.id).subscribe(sheets=>{
-      console.log("Sandeep123",sheets);
-      let st:Date
-        st= new Date(sheets[0].startdate)
-      let et :Date
-        et= new Date(sheets[0].enddate)
-     // alert(st)
-      if(st.getTime() == this.firtday.getTime()){
-        alert('hello');
-      }
 
-      alert(sheets[0].startdate);
-      alert(this.firtday)
+      console.log("Sandeep123",sheets);
       for(let i=0;i<sheets.length;i++){
-        if (sheets[i].resource_id==this.username.id && sheets[i].startdate==this.firtday && sheets[i].enddate==this.lastday){
-          this.timeSheetId=sheets.id
-          this.createTimeSheetList()
+        if (sheets[i].resource_id==this.username.id && new Date(sheets[i].startdate).getTime()==this.firtday.getTime() && new Date(sheets[i].enddate).getTime()==this.lastday.getTime()){
+          this.timeSheetId=sheets[i].id;
+         // alert(this.timeSheetId);
+          this.timeService.getTimeSheetEntries(this.timeSheetId).subscribe(result=>{
+            console.log(result);
+            if(result.length==0)
+            {
+              this.createTimeSheetList()
+            }
+            else{
+
+              this.timeSheetEntryArray = result
+              this.getTimeSheetEntries()
+            }
+          })
+
           flag=1;
-          alert("hello");
+         // alert("hello");
         }
       }
-      //console.log('byId',sheets)
       if(flag==0){
         let obj = {
           resource_id : this.username.id,
@@ -94,7 +96,7 @@ export class DashboardComponent {
         }
         let t_st=[];
         t_st.push(obj)
-        this.timeService.createTimeSheet(t_st).subscribe(result=>{
+        this.timeService.createTimeSheet(obj).subscribe(result=>{
           console.log('Inserted in Time Sheet')
 
           this.ActionTimeSheet()
@@ -116,12 +118,8 @@ export class DashboardComponent {
       let first = this.weekFirstDay.setDate(weekStart);
       this.weekLastDay = new Date(currentdate);
       let last = this.weekLastDay.setDate(weekEnd);
-      /*console.log(new Date(first))
-       console.log(new Date(last))*/
        this.firtday = new Date(first)
       this.lastday = new Date(last)
-      ///*console.log(firtday + '<-->' + lastday)*/
-      //this.dateArray.push(firtday);
       for (let i = 0; i <= 6; i++) {
         let day = weekStart + i
         let weekday = this.weekLastDay.setDate(day);
@@ -130,9 +128,6 @@ export class DashboardComponent {
       }
 
     }
-    //console.log(this.dt);
-    //console.log(temp);
-  //  /*console.log(this.dateArray)*/
     return this.dt && this.dt.getTime() || new Date().getTime();
 
   }
@@ -140,7 +135,7 @@ export class DashboardComponent {
     for(let i = 0;i<7;i++){
       let obj={
         project_id : null,
-        t_id       : this.timeSheetId,
+        timesheetId : this.timeSheetId,
         time_date : this.dateArray[i],
         hours : 0
       }
@@ -149,44 +144,92 @@ export class DashboardComponent {
     console.log("sample",this.sampleTimeSheetEntry)
   }
   getProject(value:any,updatedate:any){
-    for(let i =0;i<this.sampleTimeSheetEntry.length;i++){
-      if(this.sampleTimeSheetEntry[i].time_date.getTime()==updatedate.getTime()){
-        this.sampleTimeSheetEntry[i].project_id = value.id
+    if(this.timeSheetEntryArray.length==0){
+      for(let i =0;i<this.sampleTimeSheetEntry.length;i++){
+        if(this.sampleTimeSheetEntry[i].time_date.getTime()==updatedate.getTime()){
+          this.sampleTimeSheetEntry[i].project_id = value.id
+        }
+      }
+    }
+    else{
+      for(let i=0;i<this.timeSheetEntryArray.length;i++){
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == updatedate.getTime()){
+          alert("same")
+          this.timeSheetEntryArray[i].project_id = value.id
+        }
       }
     }
   }
   saveTimeSheet(){
-    alert(this.day1);
-    for(let i =0 ; i< this.sampleTimeSheetEntry.length;i++){
-      //alert(this.timeSheetArray[0].time_date.getTime());
-      //(this.dateArray[0].getTime())
+    if(this.timeSheetEntryArray.length==0){
+      for(let i =0 ; i< this.sampleTimeSheetEntry.length;i++){
+        if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[0].getTime()){
+          this.sampleTimeSheetEntry[i].hours = this.day1
+        }
+        if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[1].getTime()){
+          this.sampleTimeSheetEntry[i].hours = this.day2
+        }
+        if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[2].getTime()){
+          this.sampleTimeSheetEntry[i].hours = this.day3
+        }
+        if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[3].getTime()){
+          this.sampleTimeSheetEntry[i].hours = this.day4
+        }
+        if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[4].getTime()){
+          this.sampleTimeSheetEntry[i].hours = this.day5
+        }
+        if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[5].getTime()){
+          this.sampleTimeSheetEntry[i].hours = this.day6
+        }
+        if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[6].getTime()){
+          this.sampleTimeSheetEntry[i].hours = this.day7
+        }
+        //console.log(i)
+      }
+      //alert("Came to Save");
+      console.log(this.sampleTimeSheetEntry);
+      for(let i =0;i<this.sampleTimeSheetEntry.length;i++){
+        this.timeService.createTimeSheetEntries(this.sampleTimeSheetEntry[i]).subscribe(result=>{
+          console.log(result);
+        })
+      }
 
-      if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[0].getTime()){
-        alert("got it");
-        this.sampleTimeSheetEntry[i].hours = this.day1
-      }
-      if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[1].getTime()){
-        this.sampleTimeSheetEntry[i].hours = this.day2
-      }
-      if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[2].getTime()){
-        this.sampleTimeSheetEntry[i].hours = this.day3
-      }
-      if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[3].getTime()){
-        this.sampleTimeSheetEntry[i].hours = this.day4
-      }
-      if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[4].getTime()){
-        this.sampleTimeSheetEntry[i].hours = this.day5
-      }
-      if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[5].getTime()){
-        this.sampleTimeSheetEntry[i].hours = this.day6
-      }
-      if(this.sampleTimeSheetEntry[i].time_date.getTime() == this.dateArray[6].getTime()){
-        this.sampleTimeSheetEntry[i].hours = this.day7
-      }
-      //console.log(i)
     }
-    alert("Came to Save");
-    console.log(this.sampleTimeSheetEntry);
+    else{
+      for(let i =0 ; i< this.timeSheetEntryArray.length;i++){
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[0].getTime()){
+          this.timeSheetEntryArray[i].hours = this.day1
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[1].getTime()){
+          this.timeSheetEntryArray[i].hours = this.day2
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[2].getTime()){
+          this.timeSheetEntryArray[i].hours = this.day3
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[3].getTime()){
+          this.timeSheetEntryArray[i].hours = this.day4
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[4].getTime()){
+          this.timeSheetEntryArray[i].hours = this.day5
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[5].getTime()){
+          this.timeSheetEntryArray[i].hours = this.day6
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[6].getTime()){
+          this.timeSheetEntryArray[i].hours = this.day7
+        }
+        //console.log(i)
+      }
+      for(let i=0;i<this.timeSheetEntryArray.length;i++){
+        this.timeService.UpdateTimeSheetEnteries(this.timeSheetEntryArray[i]).subscribe(result=>{
+          console.log(result)
+          if(i ==6){
+            alert("Updated Successfully");
+          }
+        })
+      }
+    }
+
   }
   getAllTimeSheets(){
     this.timeService.getAllTimeSheets().subscribe(time=>{
@@ -195,39 +238,31 @@ export class DashboardComponent {
       console.log('sheets',this.Sheets)
     })
   }
-
-}
-
-  // todo: implement custom class cases
-  /*public getDayClass(date: any, mode: string): string {
-    if (mode === 'day') {
-      let dayToCheck = new Date(date).setHours(0, 0, 0, 0);
-
-      for (let event of this.events) {
-        let currentDay = new Date(event.date).setHours(0, 0, 0, 0);
-
-        if (dayToCheck === currentDay) {
-          return event.status;
-        }
+  getTimeSheetEntries(){
+    for(let i =0;i<this.timeSheetEntryArray.length;i++){
+      if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[0].getTime()){
+        this.day1= this.timeSheetEntryArray[i].hours
+      }
+      if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[1].getTime()){
+        this.day2= this.timeSheetEntryArray[i].hours
+      }
+      if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[2].getTime()){
+        this.day3= this.timeSheetEntryArray[i].hours
+      }
+      if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[3].getTime()){
+        this.day4= this.timeSheetEntryArray[i].hours
+      }
+      if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[4].getTime()){
+        this.day5= this.timeSheetEntryArray[i].hours
+      }
+      if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[5].getTime()){
+        this.day6= this.timeSheetEntryArray[i].hours
+      }
+      if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[6].getTime()){
+        this.day7= this.timeSheetEntryArray[i].hours
       }
     }
-
-    return '';
-  }*/
-
-  /*public disabled(date: Date, mode: string): boolean {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    console.log(this.timeSheetEntryArray)
   }
 
-  public open(): void {
-    this.opened = !this.opened;
-  }
-
-  public clear(): void {
-    this.dt = void 0;
-    this.dateDisabled = undefined;
-  }
-
-  public toggleMin(): void {
-    this.dt = new Date(this.minDate.valueOf());
-  }*/
+}

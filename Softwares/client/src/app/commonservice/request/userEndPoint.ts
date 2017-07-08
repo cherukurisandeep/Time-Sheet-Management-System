@@ -11,8 +11,14 @@ export const Ass = 'Ass'
 export const CreateAss = 'CreateAss'
 export const TimeSheet = 'TimeSheet'
 export const ActionTimeSheet = 'ActionTimeSheet'
+export const ActionTimeSheetEntery = 'ActionTimeSheetEntery'
+export const TimeSheetEntery = 'TimeSheetEntery'
 export const UserEndPoint = (type:string,params:any)=>{
   switch(type){
+    case TimeSheetEntery:
+      return environment.API_ROOT + '/tsms/timesheetentry' ;
+    case ActionTimeSheetEntery:
+      return environment.API_ROOT + '/tsms/timesheetentry/' + params;
     case ActionTimeSheet:
       return environment.API_ROOT + '/tsms/timesheet/' + params;
     case TimeSheet:

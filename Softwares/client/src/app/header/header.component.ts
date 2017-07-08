@@ -8,12 +8,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public username:any
+  public username:any;
+  public flag=0;
 
   constructor(public localStorageService: LocalStorageService,public router :Router  ) {
     this.username=this.localStorageService.get('username');
     if(this.username == null){
       this.router.navigate(['/login']);
+    }
+    if(this.username.role!='Admin'){
+      this.flag=1
     }
   }
 

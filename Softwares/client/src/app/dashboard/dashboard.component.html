@@ -1,3 +1,5 @@
+<app-header></app-header>
+<div class="wrapper">
 <div class="card">
   <pre class="card-block card-header">Selected date is: <em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
 </div>
@@ -70,4 +72,29 @@
   <div class="col-md-10">
   <button class="btn btn-success pull-right" (click)="saveTimeSheet()">Save</button>
   </div>
+</div>
+</div>
+<div class="col-md-2 col-lg-2"></div>
+<div class="col-md-8 col-lg-8 col-sm-12">
+  <h2 class="text-center text-primary">Your Time Sheet for this Week</h2>
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th><strong>S.no</strong></th>
+      <th><strong>Day</strong></th>
+      <th><strong>Project</strong></th>
+      <th><strong>Hours</strong></th>
+      <th><strong>Actions</strong></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let i of timeSheetEntryArray; let j = index">
+      <td>{{j+1}}</td>
+      <td>{{i.time_date | date}}</td>
+      <td>{{i.projects.name}}</td>
+      <td>{{i.hours}}</td>
+      <td><button class="btn btn-danger">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
