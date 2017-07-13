@@ -67,7 +67,6 @@
    <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="toggleMin()" tooltip="After today restriction">Min date</button>
    <button type="button" class="btn btn-sm btn-default btn-secondary" (click)="disableTomorrow()">Disable Tomorrow</button-->
 </div>
-
 <div class="row">
   <div class="col-md-10">
   <button class="btn btn-success pull-right" (click)="saveTimeSheet()">Save</button>
@@ -76,6 +75,7 @@
 </div>
 <div class="col-md-2 col-lg-2"></div>
 <div class="col-md-8 col-lg-8 col-sm-12">
+  <h3 class="text-center text-primary">The Total Hours you have worked in this week <h1><strong>{{totalhours}}</strong></h1></h3>
   <h2 class="text-center text-primary">Your Time Sheet for this Week</h2>
   <table class="table table-bordered table-hover">
     <thead>
@@ -88,12 +88,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let i of timeSheetEntryArray; let j = index">
+    <tr *ngFor="let i of dataTableArray; let j = index">
       <td>{{j+1}}</td>
       <td>{{i.time_date | date}}</td>
       <td>{{i.projects.name}}</td>
       <td>{{i.hours}}</td>
-      <td><button class="btn btn-danger">Delete</button></td>
+      <td><button class="btn btn-danger" (click)="deleteTimeSheetEntry(i.id,i.time_date)">Delete</button></td>
     </tr>
     </tbody>
   </table>

@@ -88,7 +88,7 @@ export class projectService{
       })
   }
   deleteAssosiation(params): Observable<any>{
-    return this.queryApi.doDelete("Ass",params)
+    return this.queryApi.doDelete("DeleteAss",params)
       .map((res : Response)=>{
       return res
       })
@@ -96,5 +96,14 @@ export class projectService{
       return Observable.throw(error || "Server error")
       })
 
+  }
+  ResourceAssosiation(params): Observable<any>{
+    return this.queryApi.doGet("ResourceAss",params)
+      .map((res : Response)=>{
+      return res.json()
+      })
+      .catch((error: any)=>{
+      return Observable.throw(error || "Resource Ass Server Error")
+      })
   }
 }

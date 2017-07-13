@@ -13,6 +13,8 @@ import { LocalStorageService } from 'angular-2-local-storage';
 })
 export class DashboardComponent {
   @ViewChild('staticTabs') staticTabs: TabsetComponent;
+  public totalhours=0;
+  public dataTableArray;
   public ProjectsSearch:any =[]
   public username:any
   public Sheets=[]
@@ -65,14 +67,13 @@ export class DashboardComponent {
   ActionTimeSheet(){
     let flag=0
     this.timeService.getTimeSheet(this.username.id).subscribe(sheets=>{
-
       console.log("Sandeep123",sheets);
       for(let i=0;i<sheets.length;i++){
         if (sheets[i].resource_id==this.username.id && new Date(sheets[i].startdate).getTime()==this.firtday.getTime() && new Date(sheets[i].enddate).getTime()==this.lastday.getTime()){
           this.timeSheetId=sheets[i].id;
-         // alert(this.timeSheetId);
+         //alert(this.timeSheetId);
           this.timeService.getTimeSheetEntries(this.timeSheetId).subscribe(result=>{
-            console.log(result);
+            console.log("rsult",result);
             if(result.length==0)
             {
               this.createTimeSheetList()
@@ -99,7 +100,7 @@ export class DashboardComponent {
         this.timeService.createTimeSheet(obj).subscribe(result=>{
           console.log('Inserted in Time Sheet')
 
-          this.ActionTimeSheet()
+          this.ActionTimeSheet();
         })
       }
 
@@ -154,7 +155,7 @@ export class DashboardComponent {
     else{
       for(let i=0;i<this.timeSheetEntryArray.length;i++){
         if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == updatedate.getTime()){
-          alert("same")
+
           this.timeSheetEntryArray[i].project_id = value.id
         }
       }
@@ -202,6 +203,7 @@ export class DashboardComponent {
         }
         if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[1].getTime()){
           this.timeSheetEntryArray[i].hours = this.day2
+          //alert("Sandeep");
         }
         if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[2].getTime()){
           this.timeSheetEntryArray[i].hours = this.day3
@@ -220,11 +222,14 @@ export class DashboardComponent {
         }
         //console.log(i)
       }
+      console.log('<111->',this.timeSheetEntryArray)
       for(let i=0;i<this.timeSheetEntryArray.length;i++){
         this.timeService.UpdateTimeSheetEnteries(this.timeSheetEntryArray[i]).subscribe(result=>{
           console.log(result)
+        //  alert(i)
           if(i ==6){
-            alert("Updated Successfully");
+         //   alert("Updated Successfully");
+            this.ActionTimeSheet()
           }
         })
       }
@@ -262,7 +267,50 @@ export class DashboardComponent {
         this.day7= this.timeSheetEntryArray[i].hours
       }
     }
-    console.log(this.timeSheetEntryArray)
+    console.log('TimeSheetEntry array',this.timeSheetEntryArray)
+    this.dataTable();
+  }
+  dataTable(){
+    this.totalhours=0;
+    this.dataTableArray=[]
+    for (let i =0;i<this.timeSheetEntryArray.length;i++){
+      if(this.timeSheetEntryArray[i].project_id!=null){
+        this.totalhours= this.totalhours+this.timeSheetEntryArray[i].hours
+        this.dataTableArray.push(this.timeSheetEntryArray[i])
+
+      }
+    }
+  }
+  deleteTimeSheetEntry(id,date){
+
+    for(let i =0;i<this.timeSheetEntryArray.length;i++){
+      if(this.timeSheetEntryArray[i].id == id){
+        this.timeSheetEntryArray[i].project_id=null;
+        this.timeSheetEntryArray[i].hours=0;
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[0].getTime()){
+          this.day1=0
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[1].getTime()){
+          this.day2=0
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[2].getTime()){
+          this.day3=0
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[3].getTime()){
+          this.day4=0
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[4].getTime()){
+          this.day5=0
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[5].getTime()){
+          this.day6=0
+        }
+        if(new Date(this.timeSheetEntryArray[i].time_date).getTime() == this.dateArray[6].getTime()){
+          this.day7=0
+        }
+      }
+    }
+    this.saveTimeSheet()
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit,EventEmitter, Input , Output,ViewChild } from '@angul
 import {any} from "codelyzer/util/function";
 import {projectService} from '../../project/project-service';
 import {SelectComponent} from 'ng2-select';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-time-sheet-data',
@@ -10,28 +11,41 @@ import {SelectComponent} from 'ng2-select';
   providers:[projectService]
 })
 export class TimeSheetDataComponent implements OnInit {
+  public username:any;
   @Input() ProjectsSearch:any;
   @Output() getSelectedProject = new EventEmitter();
   @ViewChild('ng') public ngSelect :SelectComponent;
   public ProjectList=[];
-  constructor(public proService : projectService) {
+  constructor(public proService : projectService,public localStorageService: LocalStorageService) {
+    this.username=this.localStorageService.get('username');
     this.getProjects();
   }
 
   ngOnInit() {
   }
   getProjects(){
-    this.proService.getAllProjects().subscribe(projects=>{
-     // console.log(projects);
-      for(let i =0;i<projects.length;i++){
-        let obj={
-          id : projects[i].id,
-          text : projects[i].name
+    // this.proService.getAllProjects().subscribe(projects=>{
+    //  // console.log(projects);
+    //   for(let i =0;i<projects.length;i++){
+    //     let obj={
+    //       id : projects[i].id,
+    //       text : projects[i].name
+    //     }
+    //    // console.log(obj);
+    //     this.ProjectList.push(obj);
+    //   }
+    //   //console.log(this.ProjectList)
+    //   this.ngSelect.items=this.ProjectList;
+    // })
+    this.proService.ResourceAssosiation(this.username.id).subscribe(project=>{
+      console.log("new",project)
+      for(let i =0;i<project.length;i++){
+        let obj = {
+          id : project[i].projects.id,
+          text : project[i].projects.name
         }
-       // console.log(obj);
         this.ProjectList.push(obj);
       }
-      //console.log(this.ProjectList)
       this.ngSelect.items=this.ProjectList;
     })
   }

@@ -13,8 +13,14 @@ export const TimeSheet = 'TimeSheet'
 export const ActionTimeSheet = 'ActionTimeSheet'
 export const ActionTimeSheetEntery = 'ActionTimeSheetEntery'
 export const TimeSheetEntery = 'TimeSheetEntery'
+export const ResourceAss = 'ResourceAss'
+export const DeleteAss = 'DeleteAss'
 export const UserEndPoint = (type:string,params:any)=>{
   switch(type){
+    case DeleteAss:
+      return environment.API_ROOT + '/tsms/project/' + params.p_id + '/resource/' + params.r_id;
+    case ResourceAss:
+      return environment.API_ROOT + '/tsms/assosiates/' + params;
     case TimeSheetEntery:
       return environment.API_ROOT + '/tsms/timesheetentry' ;
     case ActionTimeSheetEntery:

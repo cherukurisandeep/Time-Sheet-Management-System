@@ -102,21 +102,32 @@ export class ViewProjectComponent implements OnInit {
   }
   public value:any;
   private _selected=(value):void=> {
-    this.value =value
-    let count=0;
-    console.log('My', value);
-    let obj ={
-      project_id : this.projectId,
-      resource_id : value.id
+    let flag=0;
+    for(let i=0;i<this.projectResource.length;i++){
+      alert(this.projectResource[i].project_id)
+      if(this.projectResource[i].project_id==this.projectId && this.projectResource[i].resource_id==value.id){
+        alert("Assosiation already exist");
+        flag=1;
+      }
     }
-    console.log("<<<<--->",value.id)
-    this.proService.createAssosiation(obj).subscribe(result=>{
-      console.log(result);
-      alert("inserted");
-      this.ngSelect.active =[];
-      this.ngSelect.items=this.resources;
-      this.assosiatedData();
-    })
+    if(flag==0){
+      this.value =value
+      let count=0;
+      console.log('My', value);
+      let obj ={
+        project_id : this.projectId,
+        resource_id : value.id
+      }
+      console.log("<<<<--->",value.id)
+      this.proService.createAssosiation(obj).subscribe(result=>{
+        console.log(result);
+        alert("inserted");
+        this.ngSelect.active =[];
+        this.ngSelect.items=this.resources;
+        this.assosiatedData();
+      })
+    }
+
   };
 
   public removed(value:string):void {
@@ -135,8 +146,12 @@ export class ViewProjectComponent implements OnInit {
   deleteAssosiation(id){
 
     alert("close");
+    let obj={
+      p_id : this.projectId,
+      r_id : id
+    }
 
-    this.proService.deleteAssosiation(id).subscribe(result=>{
+    this.proService.deleteAssosiation(obj).subscribe(result=>{
       console.log(result)
       this.deleteModel.hide();
       //alert("hi");
