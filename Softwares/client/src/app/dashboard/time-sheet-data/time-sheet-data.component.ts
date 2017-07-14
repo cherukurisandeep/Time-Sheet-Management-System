@@ -19,6 +19,7 @@ export class TimeSheetDataComponent implements OnInit {
   constructor(public proService : projectService,public localStorageService: LocalStorageService) {
     this.username=this.localStorageService.get('username');
     this.getProjects();
+   // alert('<--->'+this.ProjectsSearch)
   }
 
   ngOnInit() {
@@ -47,6 +48,8 @@ export class TimeSheetDataComponent implements OnInit {
         this.ProjectList.push(obj);
       }
       this.ngSelect.items=this.ProjectList;
+      this.ngSelect.active= this.ProjectsSearch
+
     })
   }
 
@@ -83,5 +86,4 @@ export class TimeSheetDataComponent implements OnInit {
         return item.text;
       }).join(',');
   }
-
 }

@@ -17,9 +17,10 @@ export class loginService{
   getUsers(params): Observable <any>  {
     //const requestOptions = RequestUtils.getRequestOptions(params);
     //alert(params.username);
-    alert(params);
-    return this.queryApi.doGet('USERS', params)
+    alert(params.username);
+    return this.queryApi.doGet('Login', params)
       .map((res: Response) => {
+      //alert("hello")
       console.log(res.json());
         return res.json();
       })

@@ -31,6 +31,8 @@ import { UserHeaderComponent } from './user-header/user-header.component';
 import { DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TabsModule } from 'ngx-bootstrap';
 import { TimeSheetDataComponent } from './dashboard/time-sheet-data/time-sheet-data.component';
+import { SearchResourceComponent } from './resource/search-resource/search-resource.component';
+import { SearchProjectComponent } from './project/search-project/search-project.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { TimeSheetDataComponent } from './dashboard/time-sheet-data/time-sheet-d
     ViewResourceComponent,
     DashboardComponent,
     UserHeaderComponent,
-    TimeSheetDataComponent
+    TimeSheetDataComponent,
+    SearchResourceComponent,
+    SearchProjectComponent
   ],
   imports: [
     BrowserModule,

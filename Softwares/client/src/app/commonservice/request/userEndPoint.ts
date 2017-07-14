@@ -15,8 +15,11 @@ export const ActionTimeSheetEntery = 'ActionTimeSheetEntery'
 export const TimeSheetEntery = 'TimeSheetEntery'
 export const ResourceAss = 'ResourceAss'
 export const DeleteAss = 'DeleteAss'
+export const Login = 'Login'
 export const UserEndPoint = (type:string,params:any)=>{
   switch(type){
+    case Login:
+      return environment.API_ROOT + '/tsms/login/' +params.username + '/password/' + params.password;
     case DeleteAss:
       return environment.API_ROOT + '/tsms/project/' + params.p_id + '/resource/' + params.r_id;
     case ResourceAss:

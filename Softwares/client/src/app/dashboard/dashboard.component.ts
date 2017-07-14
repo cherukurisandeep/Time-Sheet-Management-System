@@ -192,6 +192,7 @@ export class DashboardComponent {
       for(let i =0;i<this.sampleTimeSheetEntry.length;i++){
         this.timeService.createTimeSheetEntries(this.sampleTimeSheetEntry[i]).subscribe(result=>{
           console.log(result);
+          this.ActionTimeSheet()
         })
       }
 
@@ -311,6 +312,15 @@ export class DashboardComponent {
       }
     }
     this.saveTimeSheet()
+  }
+  tabSelect(date){
+    for(let i =0;i<this.timeSheetEntryArray.length;i++){
+      if(new Date(this.timeSheetEntryArray[i].time_date).getTime()== date.getTime()){
+        this.ProjectsSearch=this.timeSheetEntryArray[i].projects.name
+       // alert(this.ProjectsSearch)
+      }
+    }
+    //alert(date);
   }
 
 }

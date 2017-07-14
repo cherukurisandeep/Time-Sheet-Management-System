@@ -35,7 +35,24 @@ export class LoginComponent implements OnInit {
   getAdmin(value)
   {
     console.log(value);
-    this.resService.getResource(value.username).subscribe(users=>{
+    this.loginservice.getUsers(value).subscribe(users=>{
+      console.log(users)
+      if(users){
+        this.localStorageService.set("username",users);
+        if(users.role == 'Admin'){
+          this.Routes.navigate(['/home']);
+
+        }
+        else{
+          this.Routes.navigate(['/dashboard']);
+        }
+      }
+
+    },(error)=>{
+      alert("Invalid Username & password");
+      window.location.reload()
+    })
+    /*this.resService.getResource(value.username).subscribe(users=>{
       console.log(users);
       //console.log(users.status)
       if(users.email == value.username && users.password == value.password){
@@ -58,7 +75,7 @@ export class LoginComponent implements OnInit {
     },(error)=>{
       alert("invalid userid & password")
       window.location.reload()
-    })
+    })*/
 
   }
 }
