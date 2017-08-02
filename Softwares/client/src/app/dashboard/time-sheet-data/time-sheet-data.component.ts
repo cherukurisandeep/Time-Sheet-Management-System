@@ -3,6 +3,7 @@ import {any} from "codelyzer/util/function";
 import {projectService} from '../../project/project-service';
 import {SelectComponent} from 'ng2-select';
 import { LocalStorageService } from 'angular-2-local-storage';
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-time-sheet-data',
@@ -11,10 +12,19 @@ import { LocalStorageService } from 'angular-2-local-storage';
   providers:[projectService]
 })
 export class TimeSheetDataComponent implements OnInit {
-  public username:any;
-  @Input() ProjectsSearch:any;
-  @Output() getSelectedProject = new EventEmitter();
   @ViewChild('ng') public ngSelect :SelectComponent;
+  public username:any;
+  @Input() set ProjectsSearch(newvalue:any){
+    //alert(newvalue)
+    if(newvalue!= null)
+    this.ngSelect.active=[newvalue];
+    else{
+      this.ngSelect.active=[]
+    }
+    //this.modifiedValue(newvalue)
+  };
+  @Output() getSelectedProject = new EventEmitter();
+
   public ProjectList=[];
   constructor(public proService : projectService,public localStorageService: LocalStorageService) {
     this.username=this.localStorageService.get('username');
@@ -48,7 +58,7 @@ export class TimeSheetDataComponent implements OnInit {
         this.ProjectList.push(obj);
       }
       this.ngSelect.items=this.ProjectList;
-      this.ngSelect.active= this.ProjectsSearch
+     // this.ngSelect.active= this.ProjectsSearch
 
     })
   }
@@ -85,5 +95,8 @@ export class TimeSheetDataComponent implements OnInit {
       .map((item:any) => {
         return item.text;
       }).join(',');
+  }
+  modifiedValue(value){
+    this.ngSelect.active= value
   }
 }

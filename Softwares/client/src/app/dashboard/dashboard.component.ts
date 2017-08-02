@@ -114,6 +114,7 @@ export class DashboardComponent {
 
       let currentdate: Date = temp;
       let weekStart = currentdate.getDate() - currentdate.getDay();
+      console.log("start",weekStart)
       let weekEnd = weekStart + 6;
       this.weekFirstDay = new Date(currentdate);
       let first = this.weekFirstDay.setDate(weekStart);
@@ -121,16 +122,26 @@ export class DashboardComponent {
       let last = this.weekLastDay.setDate(weekEnd);
        this.firtday = new Date(first)
       this.lastday = new Date(last)
-      for (let i = 0; i <= 6; i++) {
-        let day = weekStart + i
-        let weekday = this.weekLastDay.setDate(day);
-        let week = new Date(weekday)
-        this.dateArray.push(week);
-      }
-
+      console.log(this.firtday,'<---->',this.lastday)
+     /* if(weekStart != -1) {
+        for (let i = 0; i <= 6; i++) {
+          let day = weekStart + i
+          let weekday = this.weekLastDay.setDate(day);
+          console.log('<--->', new Date(weekday))
+          let week = new Date(weekday)
+          this.dateArray.push(week);
+        }
+      }*/
+      /*if(weekStart == -1){*/
+         for(let i =0 ; i<=6;i++){
+           var myDate = this.firtday.getTime()+(i*24*60*60*1000);
+           this.dateArray.push(new Date(myDate));
+         }
+      /*}*/
     }
+    //console.log("datedate",this.dateArray)
+    //this.tabSelect(this.dateArray[0])
     return this.dt && this.dt.getTime() || new Date().getTime();
-
   }
   createTimeSheetList(){
     for(let i = 0;i<7;i++){
@@ -316,8 +327,13 @@ export class DashboardComponent {
   tabSelect(date){
     for(let i =0;i<this.timeSheetEntryArray.length;i++){
       if(new Date(this.timeSheetEntryArray[i].time_date).getTime()== date.getTime()){
+        if(this.timeSheetEntryArray[i].project_id!=null)
         this.ProjectsSearch=this.timeSheetEntryArray[i].projects.name
+        else{
+          this.ProjectsSearch=null
+        }
        // alert(this.ProjectsSearch)
+        //console.log("<-----<<<",this.ProjectsSearch)
       }
     }
     //alert(date);
