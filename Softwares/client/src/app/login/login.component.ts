@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
       'password': [null, Validators.required]
     });
     console.log(this.complexForm);
-    this.complexForm.valueChanges.subscribe( (form: any) => {
+   /* this.complexForm.valueChanges.subscribe( (form: any) => {
         console.log('form changed to:', form);
-      });
+      });*/
   }
 
   ngOnInit() {
@@ -77,5 +77,10 @@ export class LoginComponent implements OnInit {
       window.location.reload()
     })*/
 
+  }
+  getAdd(){
+    var a= 10;
+    var b = 10;
+    var c  = a+b;
   }
 }

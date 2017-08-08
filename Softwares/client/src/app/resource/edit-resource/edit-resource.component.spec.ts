@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { EditResourceComponent } from './edit-resource.component';
 
@@ -8,6 +9,7 @@ describe('EditResourceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas : [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ EditResourceComponent ]
     })
     .compileComponents();

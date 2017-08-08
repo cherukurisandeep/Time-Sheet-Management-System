@@ -1,4 +1,4 @@
-import {Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ResourceComponent } from './resource/resource.component';
@@ -10,6 +10,7 @@ import { EditProjectComponent } from './project/edit-project/edit-project.compon
 import { ViewProjectComponent } from './project/view-project/view-project.component';
 import { ViewResourceComponent } from './resource/view-resource/view-resource.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {ModuleWithProviders} from "@angular/core";
 
 export const rootRouterConfig: Routes =[
   {path:'',  redirectTo:'login',pathMatch:'full'},
@@ -35,3 +36,5 @@ export const rootRouterConfig: Routes =[
       {path : ':id/edit', component : EditProjectComponent}
     ]}
 ]
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(rootRouterConfig);

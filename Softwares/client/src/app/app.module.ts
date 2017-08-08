@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {ReactiveFormsModule } from '@angular/forms';
-import { rootRouterConfig } from './app.router';
-import { FormsModule } from '@angular/forms';
+import { rootRouterConfig, routing } from './app.router';
+import { FormsModule,FormGroup,FormBuilder } from '@angular/forms';
+import {CommonModule} from "@angular/common";
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
@@ -15,7 +16,6 @@ import {SelectModule} from 'ng2-select';
 import { HttpModule } from '@angular/http';
 import { ModalModule } from 'ngx-bootstrap';
 import {QueryApi} from './commonservice/request/QueryApi' ;
-import {RequestUtils} from './commonservice/request/requestUtils';
 import { ActionheaderComponent } from './actionheader/actionheader.component';
 import { CreateResourceComponent } from './resource/create-resource/create-resource.component';
 import { EditResourceComponent } from './resource/edit-resource/edit-resource.component';
@@ -33,6 +33,7 @@ import { TabsModule } from 'ngx-bootstrap';
 import { TimeSheetDataComponent } from './dashboard/time-sheet-data/time-sheet-data.component';
 import { SearchResourceComponent } from './resource/search-resource/search-resource.component';
 import { SearchProjectComponent } from './project/search-project/search-project.component';
+import {loginModule} from "./login/login.module";
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { SearchProjectComponent } from './project/search-project/search-project.
     HeaderComponent,
     LoginComponent,
     HomeComponent,
+    FormBuilder,
     ResourceComponent,
     ProjectComponent,
     ActionheaderComponent,
@@ -60,11 +62,14 @@ import { SearchProjectComponent } from './project/search-project/search-project.
     BrowserModule,
     FormsModule,
     HttpModule,
+    CommonModule,
+    loginModule,
     AlertModule.forRoot(),
     ModalModule.forRoot(),
     RouterModule.forRoot(rootRouterConfig, { useHash: true }),
     ReactiveFormsModule,
     SelectModule,
+    routing,
     MomentModule,
     MdAutocompleteModule,
     LocalStorageModule.withConfig({
@@ -73,7 +78,7 @@ import { SearchProjectComponent } from './project/search-project/search-project.
     DatepickerModule.forRoot(),
     TabsModule.forRoot()
   ],
-  providers: [QueryApi,RequestUtils],
+  providers: [QueryApi],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

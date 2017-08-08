@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ViewProjectComponent } from './view-project.component';
 
 describe('ViewProjectComponent', () => {
@@ -8,7 +8,8 @@ describe('ViewProjectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewProjectComponent ]
+      declarations: [ ViewProjectComponent ],
+      schemas :[CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ModalModule } from 'ngx-bootstrap';
 import { ResourceComponent } from './resource.component';
 
 describe('ResourceComponent', () => {
@@ -8,6 +9,8 @@ describe('ResourceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas : [CUSTOM_ELEMENTS_SCHEMA],
+      imports : [ModalModule],
       declarations: [ ResourceComponent ]
     })
     .compileComponents();

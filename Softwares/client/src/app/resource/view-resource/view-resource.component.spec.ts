@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { ViewResourceComponent } from './view-resource.component';
 
 describe('ViewResourceComponent', () => {
@@ -8,6 +9,8 @@ describe('ViewResourceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas : [CUSTOM_ELEMENTS_SCHEMA],
+      imports : [HttpModule],
       declarations: [ ViewResourceComponent ]
     })
     .compileComponents();
